@@ -1,2 +1,3 @@
 wit
 requests
+prompt_toolkit
