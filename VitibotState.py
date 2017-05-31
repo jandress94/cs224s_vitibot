@@ -16,7 +16,8 @@ class VitibotState:
         }
 
     def setQueryParams(self, entities):
-        pass
+        print(entities)
+        return ''
 
     def setQuerySlot(self, slot, value):
         pass

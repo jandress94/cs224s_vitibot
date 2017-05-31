@@ -24,6 +24,7 @@ class VitibotWitLink:
                 filename = getAudioInput()
                 f = open(filename, 'rb')
                 jsonResponse = self.witClient.speech(f, None, {'Content-Type': 'audio/wav'})
+                print jsonResponse
                 f.close()
 
             entities = getEntitiesFromResponse(jsonResponse)
