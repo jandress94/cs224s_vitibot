@@ -11,19 +11,23 @@ class VitibotState:
         self.operationsStack = []
 
         self.actions = {
-            'getWine': self.getRandomWine
+            # 'getWine': self.getRandomWine
+            'setQuery': self.setQueryParams
         }
+
+    def setQueryParams(self, entities):
+        pass
 
     def setQuerySlot(self, slot, value):
         pass
 
-    def executeQuery(self):
+    def executeQuery(self, entities):
         pass
 
-    def setWineIndex(self, index):
+    def setWineIndex(self, entities):
         pass
 
-    def setWineIndexBasedOnText(self, selectionText):
+    def setWineIndexBasedOnText(self, entities):
         pass
 
     def getRandomWine(self, entities):
