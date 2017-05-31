@@ -22,7 +22,7 @@ class VitibotWitLink:
                 jsonResponse = self.witClient.message(message)
             else:
                 filename = getAudioInput()
-                f = open(filename)
+                f = open(filename, 'rb')
                 jsonResponse = self.witClient.speech(f, None, {'Content-Type': 'audio/wav'})
                 f.close()
 

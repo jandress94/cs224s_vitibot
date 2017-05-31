@@ -11,9 +11,9 @@ WAVE_OUTPUT_FILENAME = "output.wav"
 """
 def waitUntilEnter():
     try:
-        s = input("Hit enter when you are done speaking.")
-    except AttributeError:
         s = raw_input("Hit enter when you are done speaking.")
+    except AttributeError:
+        s = input("Hit enter when you are done speaking.")
 
 """
     Records audio input from user, saves it as a file, and returns the filename.  If
@@ -34,7 +34,7 @@ def getAudioInput(output_file_name = WAVE_OUTPUT_FILENAME):
     if 'defaultSampleRate' not in default_input:
         return None
 
-    channels = int(default_input['maxInputChannels'])
+    channels = 1
     rate = int(default_input['defaultSampleRate'])
 	
     # open input audio stream
@@ -49,9 +49,9 @@ def getAudioInput(output_file_name = WAVE_OUTPUT_FILENAME):
     # wait until user hits enter
     frames = []
     try:
-        s = input("Hit enter when you are ready to speak.")
-    except AttributeError:
         s = raw_input("Hit enter when you are ready to speak.")
+    except AttributeError:
+        s = input("Hit enter when you are ready to speak.")
 
     # set up to record
     t = threading.Thread(target=waitUntilEnter)
