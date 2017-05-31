@@ -21,11 +21,8 @@ class VitibotWitLink:
                 message = prompt('> ', mouse_support=True).rstrip()
                 jsonResponse = self.witClient.message(message)
             else:
-                filename = getAudioInput()
-                f = open(filename, 'rb')
-                jsonResponse = self.witClient.speech(f, None, {'Content-Type': 'audio/wav'})
+                jsonResponse = self.witClient.speech(getAudioInput(), headers = {'Content-Type': 'audio/raw;encoding=signed-integer;bits=16;rate=88200;endian=little'})
                 print jsonResponse
-                f.close()
 
             entities = getEntitiesFromResponse(jsonResponse)
             if entities is not None:

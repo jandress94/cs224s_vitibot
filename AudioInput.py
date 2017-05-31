@@ -26,16 +26,16 @@ def getAudioInput(output_file_name = WAVE_OUTPUT_FILENAME):
     default_input = p.get_default_input_device_info()
 
     if default_input is None:
-        return None
+        return #None
 
     if 'maxInputChannels' not in default_input:
-        return None
+        return #None
 
     if 'defaultSampleRate' not in default_input:
-        return None
+        return #None
 
-    channels = 1
-    rate = int(default_input['defaultSampleRate'])
+    channels = 2
+    rate = 44100
 	
     # open input audio stream
     stream = p.open(format=FORMAT,
@@ -44,10 +44,7 @@ def getAudioInput(output_file_name = WAVE_OUTPUT_FILENAME):
                     input=True,
                     frames_per_buffer=CHUNK)
 
-
-
     # wait until user hits enter
-    frames = []
     try:
         s = raw_input("Hit enter when you are ready to speak.")
     except AttributeError:
@@ -60,8 +57,7 @@ def getAudioInput(output_file_name = WAVE_OUTPUT_FILENAME):
     # record until user hits enter again
     while True:
         if t.is_alive():
-            data = stream.read(CHUNK)
-            frames.append(data)
+            yield stream.read(CHUNK)
         else:
             break
 
@@ -70,11 +66,3 @@ def getAudioInput(output_file_name = WAVE_OUTPUT_FILENAME):
     stream.stop_stream()
     stream.close()
     p.terminate()
-
-    wf = wave.open(output_file_name, 'wb')
-    wf.setnchannels(channels)
-    wf.setsampwidth(p.get_sample_size(FORMAT))
-    wf.setframerate(rate)
-    wf.writeframes(b''.join(frames))
-    wf.close()
-    return output_file_name
