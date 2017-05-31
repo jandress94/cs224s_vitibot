@@ -4,6 +4,7 @@ from wit import Wit
 from prompt_toolkit import prompt
 from constants import *
 from WitUtils import *
+from AudioInput import *
 
 class VitibotWitLink:
     def __init__(self):
@@ -20,10 +21,10 @@ class VitibotWitLink:
                 message = prompt('> ', mouse_support=True).rstrip()
                 jsonResponse = self.witClient.message(message)
             else:
-                # f = open(sys.argv[1])
-                # json_result = self.witClient.speech(f, None, {'Content-Type': 'audio/wav'})
-                # f.close()
-                sys.exit('Spoken input not yet implemented')
+                filename = getAudioInput()
+                f = open(filename)
+                jsonResponse = self.witClient.speech(f, None, {'Content-Type': 'audio/wav'})
+                f.close()
 
             entities = getEntitiesFromResponse(jsonResponse)
             if entities is not None:
