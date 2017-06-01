@@ -16,8 +16,29 @@ class VitibotState:
         }
 
     def setQueryParams(self, entities):
-        print(entities)
-        return ''
+        # print(entities)
+
+        color = first_entity_value(entities, 'color')
+        if color is not None:
+            self.queryFrame.setSlotValue('type', color)
+
+        country = first_entity_value(entities, 'country')
+        if country is not None:
+            self.queryFrame.setSlotValue('country', country)
+
+        max_price = first_entity_value(entities, 'max')
+        if max_price is not None:
+            self.queryFrame.setSlotValue('max_price', max_price)
+
+        min_price = first_entity_value(entities, 'min')
+        if min_price is not None:
+            self.queryFrame.setSlotValue('min_price', min_price)
+
+        varietal = first_entity_value(entities, 'varietal')
+        if varietal is not None:
+            self.queryFrame.setSlotValue('varietal', varietal)
+
+        return str(self.queryFrame)
 
     def setQuerySlot(self, slot, value):
         pass

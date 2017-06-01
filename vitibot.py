@@ -13,6 +13,6 @@ vitibotState = VitibotState()
 witLink = VitibotWitLink()
 
 while True:
-    parsedInput = witLink.getParsedInput(inputMethod = 'spoken')
+    parsedInput = witLink.getParsedInput()
     vitibotResponse = vitibotState.respondToDialog(parsedInput)
     print(vitibotResponse)
