@@ -20,24 +20,27 @@ class QueryFrame:
         if slot in self.slots:
             self.slots[slot].value = value
 
-    def getUnfilledSlotPrompts(self):
-        promptSlots = []
+    def isEmpty(self):
         for key in self.slots:
-            if self.slots[key].shouldPromptUser():
-                promptSlots.append(key)
-        return promptSlots
+            if self.slots[key].value is not None:
+                return False
+        return True
 
-    def getRequestParams(self):
-        pass
+    def getUnfilledSlotPrompts(self):
+        return [key for key in self.slots if self.slots[key].shouldPromptUser()]
+
+    def getFilledSlots(self):
+        return {key: self.slots[key] for key in self.slots if self.slots[key].value is not None}
 
     def __str__(self):
         resultString = 'QueryFrame:'
         foundSetSlot = False
 
-        for key in self.slots:
-            if self.slots[key].value is not None:
-                foundSetSlot = True
-                resultString += '\n  %s: %s' % (key, self.slots[key].value)
+        for key in self.getFilledSlots():
+            foundSetSlot = True
+            resultString += '\n  %s: %s' % (key, self.slots[key].value)
+
         if not foundSetSlot:
             resultString += '\n  QueryFrame has no set slots'
+            
         return resultString

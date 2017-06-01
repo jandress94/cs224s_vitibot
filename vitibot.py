@@ -1,3 +1,4 @@
+import sys
 from VitibotWitLink import *
 from VitibotState import *
 
@@ -9,10 +10,20 @@ print "    \  /  | | |_| | |_) | (_) | |_ "
 print "     \/   |_|\__|_|____/ \___/ \__|"
 print ""
 
-vitibotState = VitibotState()
-witLink = VitibotWitLink()
+flags = set(sys.argv[1:])
+if '-h' in flags or '--help' in flags:
+    print("-t: typed input to vitibot rather than spoken")
+    print("-v: verbose")
+    sys.exit(0)
+
+verbose = '-v' in flags
+
+vitibotState = VitibotState(verbose = verbose)
+witLink = VitibotWitLink(verbose = verbose)
+
+inputMethod = 'typed' if '-t' in flags else 'spoken'
 
 while True:
-    parsedInput = witLink.getParsedInput()
+    parsedInput = witLink.getParsedInput(inputMethod = inputMethod)
     vitibotResponse = vitibotState.respondToDialog(parsedInput)
     print(vitibotResponse)

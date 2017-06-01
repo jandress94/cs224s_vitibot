@@ -7,8 +7,9 @@ from WitUtils import *
 from AudioInput import *
 
 class VitibotWitLink:
-    def __init__(self):
+    def __init__(self, verbose = False):
         self.witClient = Wit(access_token=wit_access_token)
+        self.verbose = verbose
 
     '''
     The input method can be either 'typed' or 'spoken'
@@ -22,7 +23,8 @@ class VitibotWitLink:
                 jsonResponse = self.witClient.message(message)
             else:
                 jsonResponse = self.witClient.speech(getAudioInput(), headers = {'Content-Type': 'audio/raw;encoding=signed-integer;bits=16;rate=88200;endian=little'})
-                print jsonResponse
+                if verbose:
+                    print jsonResponse
 
             entities = getEntitiesFromResponse(jsonResponse)
             if entities is not None:

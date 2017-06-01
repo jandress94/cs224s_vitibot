@@ -1,14 +1,15 @@
 from QueryFrame import *
 from WitUtils import *
 from VitibotWineDotComLink import *
-
+from Wine import *
 
 class VitibotState:
-    def __init__(self):
+    def __init__(self, verbose = False):
         self.queryFrame = QueryFrame()
         self.wineList = None
         self.wineListIndex = None
         self.operationsStack = []
+        self.verbose = verbose
 
         self.actions = {
             # 'getWine': self.getRandomWine
@@ -16,8 +17,6 @@ class VitibotState:
         }
 
     def setQueryParams(self, entities):
-        # print(entities)
-
         color = first_entity_value(entities, 'color')
         if color is not None:
             self.queryFrame.setSlotValue('type', color)
@@ -38,13 +37,30 @@ class VitibotState:
         if varietal is not None:
             self.queryFrame.setSlotValue('varietal', varietal)
 
-        return str(self.queryFrame)
+        vintage = first_entity_value(entities, 'vintage')
+        if vintage is not None:
+            self.queryFrame.setSlotValue('vintage', vintage)
 
-    def setQuerySlot(self, slot, value):
-        pass
+        # Everything from this point on is just for a baseline.  As long as the request is not empty, execute the query and give back the first wine
+        if self.queryFrame.isEmpty():
+            return "I didn't get any query information from that statement."
 
-    def executeQuery(self, entities):
-        pass
+        self.executeQuery()
+
+        self.clearQueryFrame()
+
+        if self.wineList is None:
+            return "The wine list is still None, this probs shouldn't happen."
+        elif len(self.wineList) == 0:
+            return "I'm sorry there were no wines which matched your description."
+        else:
+            return "Here is the wine I chose for you:\n%s" % (str(self.wineList[0]))
+
+    def clearQueryFrame(self, entities = None):
+        self.queryFrame = QueryFrame()
+
+    def executeQuery(self, entities = None):
+        self.wineList = executeWineQuery(self.queryFrame, verbose = self.verbose)
 
     def setWineIndex(self, entities):
         pass
