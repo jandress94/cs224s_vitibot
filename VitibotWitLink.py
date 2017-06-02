@@ -23,7 +23,7 @@ class VitibotWitLink:
                 jsonResponse = self.witClient.message(message)
             else:
                 jsonResponse = self.witClient.speech(getAudioInput(), headers = {'Content-Type': 'audio/raw;encoding=signed-integer;bits=16;rate=88200;endian=little'})
-                if verbose:
+                if self.verbose:
                     print jsonResponse
 
             entities = getEntitiesFromResponse(jsonResponse)

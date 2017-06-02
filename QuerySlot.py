@@ -24,3 +24,6 @@ class QuerySlot:
     '''
     def shouldPromptUser(self):
         return self.promptIfAbsent and self.value is None
+
+    def getValue(self):
+        return self.value
