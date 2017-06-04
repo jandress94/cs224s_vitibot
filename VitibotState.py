@@ -9,6 +9,7 @@ class VitibotState:
         self.wineList = None
         self.wineListIndex = None
         self.operationsStack = []
+        self.previousQueries = []
         self.verbose = verbose
 
         self.actions = {
@@ -91,15 +92,18 @@ class VitibotState:
 
         # if all (ask) params either filled in frame or asked in operationStack
         self.executeQuery()
-
+        # save old queryFrame to list
+        self.previousQueries.append(self.queryFrame)
         self.clearQueryFrame()
+        # clear operation stack
+        self.operationsStack = []
 
         if self.wineList is None:
             return "The wine list is still None, this probs shouldn't happen.\n"
         elif len(self.wineList) == 0:
             return "I'm sorry there were no wines which matched your description.\n"
         else:
-            return "Here is the wine I chose for you:\n%s\nYou can further refine your search.\n" % (str(self.wineList[0]))
+            return "Here is the wine I chose for you:\n%s\n\nYou can now start a new search." % (str(self.wineList[0]))
 
     def clearQueryFrame(self, entities = None):
         self.queryFrame = QueryFrame()
@@ -138,10 +142,39 @@ class VitibotState:
     It returns a string that should be printed as Vitibot's part of the dialog.
     '''
     def respondToDialog(self, parsedInput):
+        print parsedInput
+        if 'color' in parsedInput and self.operationsStack[-1] == 'type':
+            # set slot to color
+            self.operationsStack.append("answered")
+            return self.setQueryParams(parsedInput)
+        elif 'binary' in parsedInput and self.operationsStack[-1] == 'type':
+            ans = first_entity_value(parsedInput, 'binary')
+            if ans == "yes":
+                return "What is your preference between red, white, and blush wines?"
+            elif ans == "no":
+                print "Ok, so you don't have a preference in wine type."
+                self.operationsStack.append("answered")
+                return self.setQueryParams(parsedInput)
+
+        if ('min_price' in parsedInput or 'max_price' in parsedInput) and self.operationsStack[-1] == 'max_price':
+            # set price slots
+            self.operationsStack.append("answered")
+            return self.setQueryParams(parsedInput)
+        elif 'binary' in parsedInput and self.operationsStack[-1] == 'max_price':
+            ans = first_entity_value(parsedInput, 'binary')
+            if ans == "yes":
+                return "What is price range?"
+            elif ans == "no":
+                print "Ok, so you don't have a price range."
+                self.operationsStack.append("answered")
+                return self.setQueryParams(parsedInput)
+
         if 'intent' not in parsedInput:
             return "I'm sorry, I couldn't determine what you are trying to have me do."
+        # else if parsedInput has any extracted params, check operation stack + set specific param
 
         intent = first_entity_value(parsedInput, 'intent')
+        # if intent is not only setQuery, check last item in operationsStack to see if we extracted a yes/no/keyword
 
         if intent not in self.actions:
             return "I'm sorry, but I don't know how to do that."
