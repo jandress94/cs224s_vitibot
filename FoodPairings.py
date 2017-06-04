@@ -1,3 +1,4 @@
+"""
 foodPairings = {
     'meat': '7155+3008',
     'cheese': '7155+3009',
@@ -89,7 +90,7 @@ foodPairings = {
     'seafood+tuna': '7155+3100',
     'seafood+white fish': '7155+3101',
     'seafood+crab+soft shelled': '7155+3102',
-    'seafood+crab+spicey': '7155+3103',
+    'seafood+crab+spicy': '7155+3103',
     'seafood+crab+butter': '7155+3104',
     'seafood+crab+crab cakes': '7155+3105',
     'seafood+lobster+butter': '7155+3106',
@@ -111,6 +112,7 @@ foodPairings = {
     'seafood+white fish+fried': '7155+3122'
     
 }
+"""
 
 """
 General format:
@@ -135,59 +137,451 @@ If no question is present, then no more categories to loop over.
 
 """
 
+# Note: When using food pairings, make sure to add into the category a
+# 7155+<category_id>
+# i.e., the category for meat is 7155+3008
 
 foodPairings = {
-    'meat': {
-        'id': '7155+3008',
-        'categories': {
-            'beef': {
-                'id': '7155+3015',
-                'categories': {
-                    'herbs': {
-
-                    },
-                    'hot spices': {
-
-                    },
-                    'mushroom': {
-
-                    },
-                    'stew': {
-
-                    },
-                    'bbq': {
-                    
-                    },
-                    'burgers': {
-
-                    },
+    'id': None,
+    'question': 'What kind of food do you plan on eating?',
+    'categories': {
+        'meat': {
+            'id': '3008',
+            'question': 'Any specific kind of meat?',
+            'categories': {
+                'beef': {
+                    'id': '3015',
+                    'question': 'How will you be preparing the beef?  Any spices or sauces you will be using?',
+                    'categories': {
+                        'herbs': {
+                            'id': '3019'
+                        },
+                        'hot spices': {
+                            'id': '3020'
+                        },
+                        'mushroom': {
+                            'id': '3021'
+                        },
+                        'stew': {
+                            'id': '3022'
+                        },
+                        'barbeque': {
+                            'id': '3023'
+                        },
+                        'burgers': {
+                            'id': '3024'
+                        }
+                    }
+                },
+                'lamb': {
+                    'id': '3016',
+                    'question': 'Anything you will be having with the lamb?',
+                    'categories': {
+                        'herbs': {
+                            'id': '3025'
+                        },
+                        'hot spices': {
+                            'id': '3026'
+                        }
+                    }
+                },
+                'pork': {
+                    'id': '3017',
+                    'question': 'How will you be preparing the pork?  Any spices or sauces you will be using?',
+                    'categories': {
+                        'herbs': {
+                            'id': '3027'
+                        },
+                        'hot spices': {
+                            'id': '3028'
+                        },
+                        'mushroom': {
+                            'id': '3029'
+                        },
+                        'sausage': {
+                            'id': '3030'
+                        },
+                        'tenderloin': {
+                            'id': '3031'
+                        },
+                        'barbeque': {
+                            'id': '3032'
+                        },
+                        'breaded': {
+                            'id': '3033'
+                        },
+                        'fruit': {
+                            'id': '3034'
+                        }
+                    }
+                },
+                'veal': {
+                    'id': '3018',
+                    'question': 'How will you be preparing the pork?  Any spices or sauces you will be using?',
+                    'categories': {
+                        'herbs': {
+                            'id': '3035'
+                        },
+                        'lemon': {
+                            'id': '3036'
+                        },
+                        'citrus': {
+                            'id': '3036'
+                        },
+                        'lemon or citrus': {
+                            'id': '3036'
+                        },
+                        'mushroom': {
+                            'id': '3037'
+                        },
+                        'breaded': {
+                            'id': '3038'
+                        },
+                        'chops': {
+                            'id': '3039'
+                        }
+                    }
                 }
-            },
-            'lamb': {
-
-            },
-            'pork': {
-
-            },
-            'veal': {
-
-            },
+            }
+        },
+        'cheese': {
+            'id': '3009',
+            'question': 'What kind of cheese do you have in mind?',
+            'categories': {
+                'blue': {
+                    'id': '3040'
+                },
+                'cheddar': {
+                    'id': '3041'
+                },
+                'creamy': {
+                    'id': '3042'
+                },
+                'goat': {
+                    'id': '3043'
+                },
+                'hard': {
+                    'id': '3044'
+                },
+                'semi-firm': {
+                    'id': '3045'
+                },
+                'stinky': {
+                    'id': '3046'
+                }
+            }
+        },
+        'dessert': {
+            'id': '3010',
+            'question': 'What kind of dessert will you be having?',
+            'categories': {
+                'berries': {
+                    'id': '3047'
+                },
+                'chocolate': {
+                    'id': '3048'
+                },
+                'cream': {
+                    'id': '3049'
+                },
+                'custard': {
+                    'id': '3049'
+                },
+                'cream or custard': {
+                    'id': '3049'
+                },
+                'lemon': {
+                    'id': '3050'
+                }
+            }
+        },
+        'pasta and grains': {
+            'id': '3012',
+            'question': 'What kind of pasta do you have in mind?',
+            'categories': {
+                'lasagne': {
+                    'id': '3055',
+                    'question': 'What kind of lasagne do you plan on having?',
+                    'categories': {
+                        'meat': {
+                            'id': '3060'
+                        },
+                        'vegetable': {
+                            'id': '3061'
+                        }
+                    }
+                },
+                'paella': {
+                    'id': '3056'
+                },
+                'pasta': {
+                    'id': '3057',
+                    'question': 'What do you plan on having with the pasta?',
+                    'categories': {
+                        'meat': {
+                            'id': '3067'
+                        },
+                        'mushroom': {
+                            'id': '3068'
+                        },
+                        'pesto': {
+                            'id': '3069'
+                        },
+                        'tomato-base': {
+                            'id': '3070'
+                        },
+                        'vegetable': {
+                            'id': '3071'
+                        },
+                        'white sauce': {
+                            'id': '3072'
+                        },
+                        'cream-based': {
+                            'id': '3073'
+                        }
+                    }
+                },
+                'pizza': {
+                    'id': '3058',
+                    'question': 'What will be on the pizza?',
+                    'categories': {
+                        'meat': {
+                            'id': '3062'
+                        },
+                        'vegetable': {
+                            'id': '3063'
+                        }
+                    }
+                },
+                'risotto': {
+                    'id': '3059',
+                    'question': 'Any specific kind of risotto in mind?',
+                    'categories': {
+                        'mushroom': {
+                            'id': '3064'
+                        },
+                        'plain': {
+                            'id': '3065'
+                        },
+                        'primavera': {
+                            'id': '3066'
+                        }
+                    }
+                }
+            }
+        },
+        'poultry': {
+            'id': '3013',
+            'question': 'Anything in specific?',
+            'categories': {
+                'cassoulet': {
+                    'id': '3074'
+                },
+                'chicken': {
+                    'id': '3075',
+                    'question': 'How will you be preparing the chicken?  Any spices or sauces you will be using?',
+                    'categories': {
+                        'herbs': {
+                            'id': '3078'
+                        },
+                        'lemon': {
+                            'id': '3079'
+                        },
+                        'citrus': {
+                            'id': '3079'
+                        },
+                        'lemon or citrus': {
+                            'id': '3079'
+                        },
+                        'mushroom': {
+                            'id': '3080'
+                        },
+                        'mustard': {
+                            'id': '3081'
+                        },
+                        'spicy': {
+                            'id': '3082'
+                        },
+                        'barbeque': {
+                            'id': '3083'
+                        },
+                        'cream-based': {
+                            'id': '3084'
+                        },
+                        'fried': {
+                            'id': '3085'
+                        }
+                    }
+                },
+                'duck': {
+                    'id': '3076',
+                    'question': 'How will you be preparing the duck?',
+                    'categories': {
+                        'seared': {
+                            'id': '3086'
+                        },
+                        'confit': {
+                            'id': '3087'
+                        },
+                        'fois gras': {
+                            'id': '3088'
+                        },
+                        'fruit': {
+                            'id': '3089'
+                        }
+                    }
+                },
+                'turkey': {
+                    'id': '3077',
+                    'question': 'How will you be preparing the turkey?',
+                    'categories': {
+                        'lemon': {
+                            'id': '3090'
+                        },
+                        'roasted': {
+                            'id': '3091'
+                        },
+                        'breaded': {
+                            'id': '3092'
+                        }
+                    }
+                }
+            }
+        },
+        'seafood': {
+            'id': '3014',
+            'question': 'What kind of seafood do you have in mind?',
+            'categories': {
+                'crab': {
+                    'id': '3093',
+                    'question': 'How will you be having the crab?',
+                    'categories': {
+                        'soft shelled': {
+                            'id': '3102'
+                        },
+                        'spicy': {
+                            'id': '3103'
+                        },
+                        'butter': {
+                            'id': '3104'
+                        },
+                        'crab cakes': {
+                            'id': '3105'
+                        }
+                    }
+                },
+                'lobster': {
+                    'id': '3094',
+                    'question': 'Do you plan on having the lobster with butter?',
+                    'categories': {
+                        'butter': {
+                            'id': '3106'
+                        }
+                    }
+                },
+                'oysters': {
+                    'id': '3095'
+                },
+                'salmon': {
+                    'id': '3096',
+                    'question': 'How will you be preparing the salmon?',
+                    'categories': {
+                        'herbs': {
+                            'id': '3107'
+                        },
+                        'mustard': {
+                            'id': '3108'
+                        },
+                        'grilled': {
+                            'id': '3109'
+                        }
+                    }
+                },
+                'scallops': {
+                    'id': '3097',
+                    'question': 'How will you prepare the scallops?',
+                    'categories': {
+                        'herbs': {
+                            'id': '3110'
+                        },
+                        'lemon': {
+                            'id': '3111'
+                        },
+                        'citrus': {
+                            'id': '3111'
+                        },
+                        'lemon or citrus': {
+                            'id': '3111'
+                        },
+                        'butter': {
+                            'id': '3112'
+                        }
+                    }
+                },
+                'shrimp': {
+                    'id': '3098',
+                    'question': 'What will you be having with the shrimp?',
+                    'categories': {
+                        'lemon': {
+                            'id': '3113'
+                        },
+                        'citrus': {
+                            'id': '3113'
+                        },
+                        'lemon or citrus': {
+                            'id': '3113'
+                        },
+                        'herbs': {
+                            'id': '3114'
+                        }
+                    }
+                },
+                'sushi': {
+                    'id': '3099'
+                },
+                'tuna': {
+                    'id': '3100',
+                    'question': 'How will you be preparing the tuna?',
+                    'categories': {
+                        'seared': {
+                            'id': '3115'
+                        },
+                        'spicy': {
+                            'id': '3116'
+                        }
+                    }
+                },
+                'white fish': {
+                    'id': '3101',
+                    'question': 'How will you be preparing the white fish?  Any spices or sauces you will be using?',
+                    'categories': {
+                        'herbs': {
+                            'id': '3117'
+                        },
+                        'hot spices': {
+                            'id': '3118'
+                        },
+                        'lemon': {
+                            'id': '3119'
+                        },
+                        'citrus': {
+                            'id': '3119'
+                        },
+                        'lemon or citrus': {
+                            'id': '3119'
+                        },
+                        'stew': {
+                            'id': '3120'
+                        },
+                        'fish tacos': {
+                            'id': '3121'
+                        },
+                        'fried': {
+                            'id': '3122'
+                        }
+                    }
+                }
+            }
         }
-    },
-    'cheese': {
-        'id': '7155+3009'
-
-    },
-    'dessert': {
-
-    },
-    'pasta and grains': {
-
-    },
-    'poultry': {
-
-    },
-    'seafood': {
-
     }
 }
