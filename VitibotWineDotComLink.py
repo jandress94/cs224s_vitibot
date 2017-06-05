@@ -39,11 +39,12 @@ def getFilters(filledSlots, verbose = False):
         # value will be the set value for that slots, e.g. 'pinot noir'
 
         if key in category_dict:
-            if str(value) in category_dict[key]:
-                addFilterWithValue(filters, 'categories', category_dict[key][str(value)])
-                if verbose: print("Set the category filter %s to be %s." % (key, str(value)))
+            value = str(value).lower()
+            if value in category_dict[key]:
+                addFilterWithValue(filters, 'categories', category_dict[key][value])
+                if verbose: print("Set the category filter %s to be %s." % (key, value))
             else:
-                print("I'm sorry, I can't filter wines based on the %s %s." % (key, str(value)))
+                print("I'm sorry, I can't filter wines based on the %s %s." % (key, value))
 
         elif key == 'min_price':
             min_price = value
