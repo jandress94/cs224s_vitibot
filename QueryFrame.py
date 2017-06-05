@@ -15,6 +15,7 @@ class QueryFrame:
         self.slots['region'] = QuerySlot('region')
         self.slots['appellation'] = QuerySlot('appellation')
         self.slots['labels'] = QuerySlot('labels')
+        self.slots['pairing'] = QuerySlot('pairing', True)
 
     def setSlotValue(self, slot, value):
         if slot in self.slots:
