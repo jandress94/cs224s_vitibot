@@ -22,7 +22,7 @@ class VitibotState:
         #print params
         ack = "Ok, so you're looking for a"
         if 'vintage' in params:
-            ack = ack + " " + params['vintage'].getValue()
+            ack = ack + " " + str(params['vintage'].getValue())
         if 'varietal' in params:
             ack = ack + " " + params['varietal'].getValue()
         elif 'type' in params:
@@ -142,7 +142,18 @@ class VitibotState:
     It returns a string that should be printed as Vitibot's part of the dialog.
     '''
     def respondToDialog(self, parsedInput):
-        print parsedInput
+        if self.verbose: print parsedInput
+
+        # first, check to see if we got a classified intent.
+        intent = first_entity_value(parsedInput, 'intent')
+        if intent in self.actions:
+            return self.actions[intent](parsedInput)
+        elif intent is not None:
+            return "I'm sorry, but I don't know how to do that: " + intent
+
+
+        # else if parsedInput has any extracted params, check operation stack + set specific param
+
         if 'color' in parsedInput and self.operationsStack[-1] == 'type':
             # set slot to color
             self.operationsStack.append("answered")
@@ -169,14 +180,4 @@ class VitibotState:
                 self.operationsStack.append("answered")
                 return self.setQueryParams(parsedInput)
 
-        if 'intent' not in parsedInput:
-            return "I'm sorry, I couldn't determine what you are trying to have me do."
-        # else if parsedInput has any extracted params, check operation stack + set specific param
-
-        intent = first_entity_value(parsedInput, 'intent')
-        # if intent is not only setQuery, check last item in operationsStack to see if we extracted a yes/no/keyword
-
-        if intent not in self.actions:
-            return "I'm sorry, but I don't know how to do that."
-
-        return self.actions[intent](parsedInput)
+        return ''

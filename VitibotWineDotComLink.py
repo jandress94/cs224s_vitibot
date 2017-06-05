@@ -2,6 +2,7 @@ import requests
 import random
 from constants import *
 from Wine import *
+from category_dict import *
 
 def getRandomWine(color_code):
     payload = {
@@ -23,7 +24,7 @@ def addFilterWithValue(filters, key, value):
 
     filters[key].append(str(value))
 
-def getFilters(filledSlots):
+def getFilters(filledSlots, verbose = False):
     #TODO: check what adding in 490 to the categories filter does
 
     filters = {}
@@ -33,27 +34,16 @@ def getFilters(filledSlots):
 
     for key in filledSlots:
         value = filledSlots[key].value
-        if key == 'type':
-            if value == 'red':
-                addFilterWithValue(filters, 'categories', 124)
-            elif value == 'white':
-                addFilterWithValue(filters, 'categories', 125)
-            elif value == 'rose':
-                addFilterWithValue(filters, 'categories', 126)
-            else:
-                print('I currently cannot search for that type of wine: ' + value)
 
-        elif key == 'varietal':
-            if value == 'cabernet sauvignon':
-                addFilterWithValue(filters, 'categories', 139)
-            elif value == 'chardonnay':
-                addFilterWithValue(filters, 'categories', 140)
-            elif value == 'sauvignon blanc':
-                addFilterWithValue(filters, 'categories', 151)
-            elif value == 'pinot noir':
-                addFilterWithValue(filters, 'categories', 143)
+        # key will be the name of one of the slots that has been filled, e.g. 'varietal'
+        # value will be the set value for that slots, e.g. 'pinot noir'
+
+        if key in category_dict:
+            if str(value) in category_dict[key]:
+                addFilterWithValue(filters, 'categories', category_dict[key][str(value)])
+                if verbose: print("Set the category filter %s to be %s." % (key, str(value)))
             else:
-                print('I currently cannot search for that varietal: ' + value)
+                print("I'm sorry, I can't filter wines based on the %s %s." % (key, str(value)))
 
         elif key == 'min_price':
             min_price = value
@@ -63,26 +53,6 @@ def getFilters(filledSlots):
             max_price = value
             changedPrice = True
 
-        elif key == 'vintage':
-            if value == 1999:
-                addFilterWithValue(filters, 'categories', 364)
-            elif value == 2000:
-                addFilterWithValue(filters, 'categories', 365)
-            elif value == 2001:
-                addFilterWithValue(filters, 'categories', 366)
-            else:
-                print('I currently cannot search for that vintage: %d' % (value))
-
-        elif key == 'country':
-            if value == 'France':
-                addFilterWithValue(filters, 'categories', 102)
-            elif value == 'Italy':
-                addFilterWithValue(filters, 'categories', 105)
-            elif value == 'United States':
-                addFilterWithValue(filters, 'categories', 101)
-            else:
-                print('I currently cannot search for that country: ' + value)
-
     if changedPrice:
         addFilterWithValue(filters, 'price', "%d|%d" % (min_price, max_price))
 
@@ -91,7 +61,7 @@ def getFilters(filledSlots):
 def executeWineQuery(queryFrame, verbose = False):
     filledSlots = queryFrame.getFilledSlots()
 
-    filters = getFilters(filledSlots)                                               # {'categories': [1, 2, 3], 'price': ['12|34']}
+    filters = getFilters(filledSlots, verbose)                                      # {'categories': [1, 2, 3], 'price': ['12|34']}
     joinedFilters = {key: '(' + '+'.join(filters[key]) + ')' for key in filters}    # {'categories': '(1+2+3)', 'price': '(12|34)'}
     filtersWithNames = [key + joinedFilters[key] for key in joinedFilters]          # ['categories(1+2+3)', 'price(12|34)']
     
