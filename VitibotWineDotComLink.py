@@ -3,6 +3,7 @@ import random
 from constants import *
 from Wine import *
 from category_dict import *
+from FoodPairings import *
 
 def getRandomWine(color_code):
     payload = {
@@ -53,6 +54,19 @@ def getFilters(filledSlots, verbose = False):
         elif key == 'max_price':
             max_price = value
             changedPrice = True
+        elif key == 'pairing':
+            foods = value.split('+')
+            curr_food_dict = foodPairings
+            for i in xrange(0, len(foods)):
+                if 'categories' in curr_food_dict and foods[i] in curr_food_dict['categories']:
+                    curr_food_dict = curr_food_dict['categories'][foods[i]]
+                else:
+                    break
+            id = curr_food_dict['id']
+            if id is not None:
+                addFilterWithValue(filters, 'categories', id)
+            else:
+                print("I'm sorry, I can't filter wines based on the %s %s." % (key, value))
 
     if changedPrice:
         addFilterWithValue(filters, 'price', "%d|%d" % (min_price, max_price))
