@@ -118,7 +118,7 @@ foodPairings = {
 General format:
    For a given food:
         'food': {
-            'id': <the_category_id>,
+            'id': '<the_category_id>',
             'question': <the_question_for_refining_search>,
             'categories': {
                 # more foods
@@ -151,94 +151,121 @@ foodPairings = {
             'categories': {
                 'beef': {
                     'id': '3015',
+                    'blurb': 'Beef has lots of protein and some fat as well, which need wine with good structure and tannin, such as Cabernet Sauvignon, Merlot, Bordeaux blends, Nebbiolo, Malbec or Petite Sirah',
                     'question': 'How will you be preparing the beef?  Any spices or sauces you will be using?',
                     'categories': {
                         'herbs': {
-                            'id': '3019'
+                            'id': '3019',
+                            'blurb': 'For beef with herbs, try a wine that has herbal notes to compliment the food, and good tannins to balance the fat and protein in the meat. Syrah from the Rhone Valley or Washington State, Malbec, Ribera del Duero or a good Chilean red will pair well.'
                         },
                         'hot spices': {
-                            'id': '3020'
+                            'id': '3020',
+                            'blurb': 'Hot spices need sweet fruit, but the meat still needs some good structure. Try Zinfandel, California Syrah or a Malbec'
                         },
                         'mushroom': {
-                            'id': '3021'
+                            'id': '3021',
+                            'blurb': 'Mushroom sauces give an earthy quality to the meal, so try a more rustic red such as Rhone Syrah, Bordeaux, a Burgundian Pinot Noir or a Ribera del Duero.'
                         },
                         'stew': {
-                            'id': '3022'
+                            'id': '3022',
+                            'blurb': 'Beef stew is a comfort food and needs a comfort wine. Choose from red Bordeaux blends, Rioja, Piedmont reds (such as Barolo or Barbaresco) or Tuscan reds'
                         },
                         'barbeque': {
-                            'id': '3023'
+                            'id': '3023',
+                            'blurb': 'BBQ sauce has a sweet and spicy component that marries well with a structured wine with concentrated fruit. Try Zinfandel, Malbec, Australian Reds, Mourvedre/Monastrell or Petite Sirah.'
                         },
                         'burgers': {
-                            'id': '3024'
+                            'id': '3024',
+                            'blurb': 'A juicy burger wants a juicy wine, but with a bit of backbone. Try cru Beaujolais, Rhone red blends, South African reds or Australian Shiraz'
                         }
                     }
                 },
                 'lamb': {
                     'id': '3016',
+                    'blurb': 'A gamey meat, lamb pairs well with wine that has herbal or gamey notes. Try red wines from the Rhone, like Chateauneuf-du-Pape, and Pinotage or Bordeaux',
                     'question': 'Anything you will be having with the lamb?',
                     'categories': {
                         'herbs': {
-                            'id': '3025'
+                            'id': '3025',
+                            'blurb': 'Lamb with herbs is a classic match for Chateauneuf-du-Pape and other Rhone reds such as Gigondas and Vacqueras. Also try a Northern Rhone red like Hermitage or Cornas'
                         },
                         'hot spices': {
-                            'id': '3026'
+                            'id': '3026',
+                            'blurb': 'Hot spices need sweet fruit, but this gamey meat also needs some structure. Try South American Syrah or Cabernet Sauvignon or South African reds.'
                         }
                     }
                 },
                 'pork': {
                     'id': '3017',
+                    'blurb': 'Pork, the "other" white meat, is generally mild when served plain. Classic pairings include Pinot Noir, Cotes-du-Rhone and Tempranillo - all have a healthy balance of fresh fruit and acidity.',
                     'question': 'How will you be preparing the pork?  Any spices or sauces you will be using?',
                     'categories': {
                         'herbs': {
-                            'id': '3027'
+                            'id': '3027',
+                            'blurb': 'The other white meat mixed with herbs requires something with an herbal kick, but not too heavy. Rhone red blends, Rioja and Carmenere will offer just that.'
                         },
                         'hot spices': {
-                            'id': '3028'
+                            'id': '3028',
+                            'blurb': 'Hot spices need sweet fruit, but pork is a lighter meat, so avoid wines that are too heavy. Australian reds from cool climates, like the Yarra Valley, work well, as do lighter Zinfandels or Mourvedre.'
                         },
                         'mushroom': {
-                            'id': '3029'
+                            'id': '3029',
+                            'blurb': 'Pork and mushrooms are a great flavor match. They call for a medium-bodied red with good fruit and mild tannins,  like a New Zealand or Oregon Pinot Noir or a Merlot-based Bordeaux.'
                         },
                         'sausage': {
-                            'id': '3030'
+                            'id': '3030',
+                            'blurb': 'The spice in sausage goes well with wines that have some big fruit, a touch of spice, and not too many tannins. Try Cotes-du-Rhone, Grenache or a dry Rose.'
                         },
                         'tenderloin': {
-                            'id': '3031'
+                            'id': '3031',
+                            'blurb': 'A very tender cut of meat, the pork tenderloin goes well with a good balance of flavors and structure. Try Pinot Noir, Ribera del Duero or Merlot (Washington State Merlots are particularly delicious).'
                         },
                         'barbeque': {
-                            'id': '3032'
+                            'id': '3032',
+                            'blurb': 'Ribs or roast, pork with BBQ sauce needs some red with fruit and spice, but medium tannins. Try Zinfandel, Cotes-du-Rhone, Australian reds or Argentina Malbec.'
                         },
                         'breaded': {
-                            'id': '3033'
+                            'id': '3033',
+                            'blurb': 'Breaded pork goes well with both red and white wines. For whites try an Italian white, like Falenghina or Arneis. Viognier is another great match. For reds go with a Tuscan red or Tempranillo.'
                         },
                         'fruit': {
-                            'id': '3034'
+                            'id': '3034',
+                            'blurb': 'Pork with a fruit sauce likes fruit-forward wines. If the fruit on your meat is red (like cherry), match with Pinot Noir (particularly California). White fruits sauces (like peach or apple) go well with Torrontes, Spanish whites or even Viognier.'
                         }
                     }
                 },
                 'veal': {
                     'id': '3018',
+                    'blurb': 'Veal is a delicate meat, but with distinct flavors. Try a rose (particularly of the sparkling kind),a Viognier or white Bordeaux if you\'re up for white. For reds, a Merlot or Pinot Noir will pair nicely.',
                     'question': 'How will you be preparing the pork?  Any spices or sauces you will be using?',
                     'categories': {
                         'herbs': {
-                            'id': '3035'
+                            'id': '3035',
+                            'blurb': 'An herb rub on veal calls for a fruit-forward red like Merlot or Pinot Noir'
                         },
                         'lemon': {
-                            'id': '3036'
+                            'id': '3036',
+                            'blurb': 'Lemon and citrus sauces on mild meat, like veal, call for bright whites with good acidity. Try an Italian white wine or a bright Rose.'
                         },
                         'citrus': {
-                            'id': '3036'
+                            'id': '3036',
+                            'blurb': 'Lemon and citrus sauces on mild meat, like veal, call for bright whites with good acidity. Try an Italian white wine or a bright Rose.'
                         },
                         'lemon or citrus': {
-                            'id': '3036'
+                            'id': '3036',
+                            'blurb': 'Lemon and citrus sauces on mild meat, like veal, call for bright whites with good acidity. Try an Italian white wine or a bright Rose.'
                         },
                         'mushroom': {
-                            'id': '3037'
+                            'id': '3037',
+                            'blurb': 'The earthy mushroom flavor on this delicate meat will go well with a good Pinot Noir (particularly from Oregon, France or New Zealand) or a Merlot'
                         },
                         'breaded': {
-                            'id': '3038'
+                            'id': '3038',
+                            'blurb': 'Breaded veal ads a richer flavor to the delicate meat - try an old-world wine - a red or white Burgundy would be perfect, or a rustic Tuscan red, like Chianti.'
                         },
                         'chops': {
-                            'id': '3039'
+                            'id': '3039',
+                            'blurb': 'Veal chops are simple, but rich. Try either a fresh rose or Viognier'
                         }
                     }
                 }
@@ -249,25 +276,32 @@ foodPairings = {
             'question': 'What kind of cheese do you have in mind?',
             'categories': {
                 'blue': {
-                    'id': '3040'
+                    'id': '3040',
+                    'blurb': 'Blue cheese goes best with wines low in tannins and high in sugar. Try Port, Sauternes or an Australian Muscat'
                 },
                 'cheddar': {
-                    'id': '3041'
+                    'id': '3041',
+                    'blurb': 'Cheddar\'s sharp bite needs carbonation & acid - sparkling wine is the best match here'
                 },
                 'creamy': {
-                    'id': '3042'
+                    'id': '3042',
+                    'blurb': 'The acidity and carbonation of sparkling wine cuts through the creamy cheese, giving an excellent contrast of texture. Other good matches are Chablis or White Burgundy.'
                 },
                 'goat': {
-                    'id': '3043'
+                    'id': '3043',
+                    'blurb': 'The sharpness of goat cheese is well-matched with a bright, acidic white. Try Sauvignon Blanc, Sparkling wine or a Chablis'
                 },
                 'hard': {
-                    'id': '3044'
+                    'id': '3044',
+                    'blurb': 'Hard cheeses can stand up well to reds, but the red should have a good fruit component. Try a fruity Pinot Noir, Zinfandel, Merlot or a raisin-y Amarone'
                 },
                 'semi-firm': {
-                    'id': '3045'
+                    'id': '3045',
+                    'blurb': 'Semi-firm cheeses, particularly sheep\'s cheese, are good matchs with many wines, especially those from the same regions (think Pyranees). Try with Italian reds, Spanish reds or a Rhone red.'
                 },
                 'stinky': {
-                    'id': '3046'
+                    'id': '3046',
+                    'blurb': 'Rich, stinky cheese can make some wines taste bad. Enjoy with an aromatic, slightly sweet wine such as Gewurztraminer, Riesling, or a Pinot Gris from Alsace.'
                 }
             }
         },
@@ -276,22 +310,28 @@ foodPairings = {
             'question': 'What kind of dessert will you be having?',
             'categories': {
                 'berries': {
-                    'id': '3047'
+                    'id': '3047',
+                    'blurb': 'Berry fruit desserts are great with good flavor and acid, like Beaumes de Venise, Ice Wine, Vin Santo or even Australian Muscat'
                 },
                 'chocolate': {
-                    'id': '3048'
+                    'id': '3048',
+                    'blurb': 'Chocolate desserts vary according to how much chocolate and what percent cocoa is involved. While Port is a classic, dark chocolate pairs well with still red wines, like fruit-forward Pinot Noir and Australian Shiraz. For sweeter chocolate, try a Banyuls or an Australian Muscat, or "sticky."'
                 },
                 'cream': {
-                    'id': '3049'
+                    'id': '3049',
+                    'blurb': 'A cream or custard pairs well with lighter dessert wines with good acidity, like Sauternes, Beaumes-de-Venise, ice wine or Muscat'
                 },
                 'custard': {
-                    'id': '3049'
+                    'id': '3049',
+                    'blurb': 'A cream or custard pairs well with lighter dessert wines with good acidity, like Sauternes, Beaumes-de-Venise, ice wine or Muscat'
                 },
                 'cream or custard': {
-                    'id': '3049'
+                    'id': '3049',
+                    'blurb': 'A cream or custard pairs well with lighter dessert wines with good acidity, like Sauternes, Beaumes-de-Venise, ice wine or Muscat'
                 },
                 'lemon': {
-                    'id': '3050'
+                    'id': '3050',
+                    'blurb': 'A lemon based dessert needs lighter dessert wines with good acidity, like Sauternes, Beaumes-de-Venise, Moscato d\'Asti or an Auslese Riesling'
                 }
             }
         },
@@ -304,40 +344,51 @@ foodPairings = {
                     'question': 'What kind of lasagne do you plan on having?',
                     'categories': {
                         'meat': {
-                            'id': '3060'
+                            'id': '3060',
+                            'blurb': 'Lasagne has a myriad of flavors. With the meat and tomato sauce, try Italian reds like Chianti, Barbera and Southern Italian Reds'
                         },
                         'vegetable': {
-                            'id': '3061'
+                            'id': '3061',
+                            'blurb': 'Lasagne has a myriad of flavors. For vegetable lasagne, look for wines with a good acid/fruit balance such as Barbera, Italian or Spanish whites and California Sauvignon Blanc'
                         }
                     }
                 },
                 'paella': {
-                    'id': '3056'
+                    'id': '3056',
+                    'blurb': 'A mix of shellfish and/or meats with the spicy rice of Paella match well with Spanish whites (like Albarino or Rueda), Rose, Rioja, Grenache or Pinot Gris'
                 },
                 'pasta': {
                     'id': '3057',
+                    'blurb': 'Pasta, a fairly bland food, is enhanced with butter or olive oil. Try a mild white, like Italian white, Spanich white or a White Rhone Blend',
                     'question': 'What do you plan on having with the pasta?',
                     'categories': {
                         'meat': {
-                            'id': '3067'
+                            'id': '3067',
+                            'blurb': 'Pair your pasta and meat sauce with a red that is sturdy, but contains good acidity. Try Italian reds like Barbera, Chianti, Brunello di Montalcino and Aglianico'
                         },
                         'mushroom': {
-                            'id': '3068'
+                            'id': '3068',
+                            'blurb': 'Mushrooms have an earthy quality and when mixed with pasta, pair well with Pinot Noir, Barbera or Tempranillo'
                         },
                         'pesto': {
-                            'id': '3069'
+                            'id': '3069',
+                            'blurb': 'Garlic and herb-based pesto has a kick, and is a nice match with Italian whites, Pinot Grigio/Pinot Gris or a White Rhone blend'
                         },
                         'tomato-base': {
-                            'id': '3070'
+                            'id': '3070',
+                            'blurb': 'The acid from tomatoes pair well with more acidic red wines, particularly from Italy, like Barbera, Dolcetto or Chianti'
                         },
                         'vegetable': {
-                            'id': '3071'
+                            'id': '3071',
+                            'blurb': 'Vegetables with pasta vary, so try a versatile wine with good acidity such as Italian or Spanish whites, Gruner Veltliner, Pinot Blanc or a dry Rose'
                         },
                         'white sauce': {
-                            'id': '3072'
+                            'id': '3072',
+                            'blurb': 'Seafood and white sauces go well with crisp Chardonnay (such as Chablis), aromatic Spanish whites or White Rhone Blends. Also try Sparkling wine, which is a great match!'
                         },
                         'cream-based': {
-                            'id': '3073'
+                            'id': '3073',
+                            'blurb': 'You can complement the dish with a creamy white, such as Chardonnay or Viognier, or contrast it with a crisp white, like Italian whites or anything sparkling, like Cava or Prosecco.'
                         }
                     }
                 },
@@ -346,10 +397,12 @@ foodPairings = {
                     'question': 'What will be on the pizza?',
                     'categories': {
                         'meat': {
-                            'id': '3062'
+                            'id': '3062',
+                            'blurb': 'Spicy meat and tomato sauce match well with acidic reds like Barbera, Dolcetto or Chianti. A spicy Shiraz also pairs well'
                         },
                         'vegetable': {
-                            'id': '3063'
+                            'id': '3063',
+                            'blurb': 'Cheese and vegetables need good fruit in a wine, so try Pinot Gris, Rose, Beaujolais or Shiraz'
                         }
                     }
                 },
@@ -358,13 +411,16 @@ foodPairings = {
                     'question': 'Any specific kind of risotto in mind?',
                     'categories': {
                         'mushroom': {
-                            'id': '3064'
+                            'id': '3064',
+                            'blurb': 'For the earthy mushroom flavors and richness of risotto, look for Pinot Noir, Tempranillo or Barbera'
                         },
                         'plain': {
-                            'id': '3065'
+                            'id': '3065',
+                            'blurb': 'The simple but rich flavors of risotto do well with Pinot Grigio, Italian Whites, Gruner Veltliner or a White Rhone blend'
                         },
                         'primavera': {
-                            'id': '3066'
+                            'id': '3066',
+                            'blurb': 'For paring with vegetables and rich risotto flavors, look for acid and fruit balance with White Rhone blends, Italian or Spanish Whites, or California Sauvignon Blanc'
                         }
                     }
                 }
@@ -375,74 +431,95 @@ foodPairings = {
             'question': 'Anything in specific?',
             'categories': {
                 'cassoulet': {
-                    'id': '3074'
+                    'id': '3074',
+                    'blurb': 'Cassoulet has a myriad of meaty flavors and is a rich, heavy dish. Try a Syrah from Washington or France, a Southern Rhone red, a Southern Italian red or a Bordeaux'
                 },
                 'chicken': {
                     'id': '3075',
+                    'blurb': 'Chicken is a mild meat and served plain, could match with just about anything, as it won\'t overpower the wine. It does particularly well with Chardonnay, Italian whites or White Rhone Blends',
                     'question': 'How will you be preparing the chicken?  Any spices or sauces you will be using?',
                     'categories': {
                         'herbs': {
-                            'id': '3078'
+                            'id': '3078',
+                            'blurb': 'Mild chicken flavors and herbs go well wth good acid and light fruit. Pair with Italian whites, White Rhone Blends, Gruner Veltliner or Chenin Blanc. For reds, try a red Rhone blend'
                         },
                         'lemon': {
-                            'id': '3079'
+                            'id': '3079',
+                            'blurb': 'A lemon/citrus based sauce and chicken matches well with acidic wines like Sauvignon Blanc, White Rhone blends, Pinot Grigio, Chablis or Chenin Blanc'
                         },
                         'citrus': {
-                            'id': '3079'
+                            'id': '3079',
+                            'blurb': 'A lemon/citrus based sauce and chicken matches well with acidic wines like Sauvignon Blanc, White Rhone blends, Pinot Grigio, Chablis or Chenin Blanc'
                         },
                         'lemon or citrus': {
-                            'id': '3079'
+                            'id': '3079',
+                            'blurb': 'A lemon/citrus based sauce and chicken matches well with acidic wines like Sauvignon Blanc, White Rhone blends, Pinot Grigio, Chablis or Chenin Blanc'
                         },
                         'mushroom': {
-                            'id': '3080'
+                            'id': '3080',
+                            'blurb': 'Earthy mushrooms and mild chicken go well with a Pinot Noir, particularly from New Zealand, Oregon or France.'
                         },
                         'mustard': {
-                            'id': '3081'
+                            'id': '3081',
+                            'blurb': 'Spicy mustard with chicken pairs well with the creamy texture of Chardonnay or the fruity components of Beaujolias'
                         },
                         'spicy': {
-                            'id': '3082'
+                            'id': '3082',
+                            'blurb': 'Spicy chicken matches well with ripe fruits in wines like Rose, Riesling, Gewurtztraminer, Beaujolais or Viognier'
                         },
                         'barbeque': {
-                            'id': '3083'
+                            'id': '3083',
+                            'blurb': 'Spicy and sweet BBQ is a great match with fruit-forward Pinot Noir, Beaujolais or Rose'
                         },
                         'cream-based': {
-                            'id': '3084'
+                            'id': '3084',
+                            'blurb': 'Cream-based sauces pair well with creamy wines, like Chardonnay or a Viognier. To contrast the flavors, try a crisp sparkling wine'
                         },
                         'fried': {
-                            'id': '3085'
+                            'id': '3085',
+                            'blurb': 'Fried chicken is a heavier preparation, so it needs wine with a bit of weight, like Pinot Gris, Chardonnay from Oregon or California, off-dry Riesling from Washington or Germany, or Rose'
                         }
                     }
                 },
                 'duck': {
                     'id': '3076',
+                    'blurb': 'Pinot Noir is a classic match with a simple duck dish',
                     'question': 'How will you be preparing the duck?',
                     'categories': {
                         'seared': {
-                            'id': '3086'
+                            'id': '3086',
+                            'blurb': 'Pinot Noir is a classic match with a simple duck dish'
                         },
                         'confit': {
-                            'id': '3087'
+                            'id': '3087',
+                            'blurb': 'Duck confit is a rich dish that will go well with Spanish reds like Priorat or an earthy Pinot Noir'
                         },
                         'fois gras': {
-                            'id': '3088'
+                            'id': '3088',
+                            'blurb': 'The fat content of fois gras is a classic match for the delicate sweetness and bright acidity of a Sauternes. Ice wine is another good match'
                         },
                         'fruit': {
-                            'id': '3089'
+                            'id': '3089',
+                            'blurb': 'Fruit-based duck dishes are great with earthy yet fruit-forward wines, like Pinot Noir (particularly a Burgundy) or a modern-style Rioja'
                         }
                     }
                 },
                 'turkey': {
                     'id': '3077',
+                    'blurb': 'Roasted turkey is a bit heavier than other turkeys. Try an aromatic, fruit-forward white like Riesling or a juicy Syrah from Washignton State or California',
                     'question': 'How will you be preparing the turkey?',
                     'categories': {
                         'lemon': {
-                            'id': '3090'
+                            'id': '3090',
+                            'blurb': 'A lemon/citrus based turkey dish is great with an acidic, slightly nutty Italian white or a Chenin Blanc'
                         },
                         'roasted': {
-                            'id': '3091'
+                            'id': '3091',
+                            'blurb': 'Roasted turkey is typically heavier than other turkey preparations. Try an aromatic, fruit-forward white like Riesling or Gewurztraminer, or a juicy red like Beaujolais, California Pinot Noir or even Zinfandel.'
                         },
                         'breaded': {
-                            'id': '3092'
+                            'id': '3092',
+                            'blurb': 'Breaded turkey is a bit heavier in prep method, so try a Riesling or a Semillon'
                         }
                     }
                 }
@@ -457,16 +534,20 @@ foodPairings = {
                     'question': 'How will you be having the crab?',
                     'categories': {
                         'soft shelled': {
-                            'id': '3102'
+                            'id': '3102',
+                            'blurb': 'Soft shelled crabs are a great match for Rose, White Rhone blends and Chenin Blanc, particularly from the Loire'
                         },
                         'spicy': {
-                            'id': '3103'
+                            'id': '3103',
+                            'blurb': 'For spicy crab meat, look for something crisp with a touch of sweetness, like Riesling. Also try Rose or an aromatic Spanish white'
                         },
                         'butter': {
-                            'id': '3104'
+                            'id': '3104',
+                            'blurb': 'Rich crab with butter are a great match for Chardonnay or Viognier. Also try a White Rhone blend.'
                         },
                         'crab cakes': {
-                            'id': '3105'
+                            'id': '3105',
+                            'blurb': 'Crab cakes are slightly rich, so pair a textured wine with them like Viognier, Pinot Gris, Chardonnay or Gruner Veltliner'
                         }
                     }
                 },
@@ -475,25 +556,30 @@ foodPairings = {
                     'question': 'Do you plan on having the lobster with butter?',
                     'categories': {
                         'butter': {
-                            'id': '3106'
+                            'id': '3106',
+                            'blurb': 'Lobster and butter are great match with a classic Chardonnay'
                         }
                     }
                 },
                 'oysters': {
-                    'id': '3095'
+                    'id': '3095',
+                    'blurb': 'Oysters are salty and briny and need a crisp, mineral-driven wine like Chablis, Muscadet or another Loire white wine'
                 },
                 'salmon': {
                     'id': '3096',
                     'question': 'How will you be preparing the salmon?',
                     'categories': {
                         'herbs': {
-                            'id': '3107'
+                            'id': '3107',
+                            'blurb': 'Herbs on Salmon call for a Pinot Noir, Pinot Gris or a crisp Chardonnay'
                         },
                         'mustard': {
-                            'id': '3108'
+                            'id': '3108',
+                            'blurb': 'Match the weight of salmon and the spice of mustard with a bright Pinot Noir, Pinot Gris or a Cru Beaujolais'
                         },
                         'grilled': {
-                            'id': '3109'
+                            'id': '3109',
+                            'blurb': 'Salmon on the grill brings out the quality flavors of the fish. Pair with Pinot Gris, Chardonnay or Pinot Noir'
                         }
                     }
                 },
@@ -502,19 +588,24 @@ foodPairings = {
                     'question': 'How will you prepare the scallops?',
                     'categories': {
                         'herbs': {
-                            'id': '3110'
+                            'id': '3110',
+                            'blurb': 'Richer scallops with herbs go well with aromatic whites like Torrontes, Albarino and White Rhone blends'
                         },
                         'lemon': {
-                            'id': '3111'
+                            'id': '3111',
+                            'blurb': 'Scallops with lemon/citrus need a crisp white. Try Chablis, White Burgundy or Muscadet'
                         },
                         'citrus': {
-                            'id': '3111'
+                            'id': '3111',
+                            'blurb': 'Scallops with lemon/citrus need a crisp white. Try Chablis, White Burgundy or Muscadet'
                         },
                         'lemon or citrus': {
-                            'id': '3111'
+                            'id': '3111',
+                            'blurb': 'Scallops with lemon/citrus need a crisp white. Try Chablis, White Burgundy or Muscadet'
                         },
                         'butter': {
-                            'id': '3112'
+                            'id': '3112',
+                            'blurb': 'A butter-based sauce with rich scallops go well with a richer wine like Chardonnay, Viognier or Vouvray'
                         }
                     }
                 },
@@ -523,61 +614,78 @@ foodPairings = {
                     'question': 'What will you be having with the shrimp?',
                     'categories': {
                         'lemon': {
-                            'id': '3113'
+                            'id': '3113',
+                            'blurb': 'Shrimp with lemon/citrus need a crisp white. Try Chablis, White Burgundy or Muscadet'
                         },
                         'citrus': {
-                            'id': '3113'
+                            'id': '3113',
+                            'blurb': 'Shrimp with lemon/citrus need a crisp white. Try Chablis, White Burgundy or Muscadet'
                         },
                         'lemon or citrus': {
-                            'id': '3113'
+                            'id': '3113',
+                            'blurb': 'Shrimp with lemon/citrus need a crisp white. Try Chablis, White Burgundy or Muscadet'
                         },
                         'herbs': {
-                            'id': '3114'
+                            'id': '3114',
+                            'blurb': 'Shellfish with garlic and herbs goes well with crisp aromatic wines like Spanish whites'
                         }
                     }
                 },
                 'sushi': {
-                    'id': '3099'
+                    'id': '3099',
+                    'blurb': 'Sushi has salty and spicy, so is great with sake, sparkling wine or Pinot Gris'
                 },
                 'tuna': {
                     'id': '3100',
+                    'blurb': 'Seared tuna is a heavier fish and goes well with Pinot Noir or Oregon Pinot Gris',
                     'question': 'How will you be preparing the tuna?',
                     'categories': {
                         'seared': {
-                            'id': '3115'
+                            'id': '3115',
+                            'blurb': 'Seared tuna is a heavier fish and goes well with Pinot Noir or Oregon Pinot Gris'
                         },
                         'spicy': {
-                            'id': '3116'
+                            'id': '3116',
+                            'blurb': 'Spicy tuna is a nice match with Pinot Gris from Oregon or Alsace or a Rose'
                         }
                     }
                 },
                 'white fish': {
                     'id': '3101',
+                    'blurb': 'White fish can be delicate, yet meaty. Best to have a good wine with balance and not too many flavors to overwhelm the fish. Try Pinot Blanc, White Rhone blends or Pinot Grigio',
                     'question': 'How will you be preparing the white fish?  Any spices or sauces you will be using?',
                     'categories': {
                         'herbs': {
-                            'id': '3117'
+                            'id': '3117',
+                            'blurb': 'Delicate white fish with some herbs need a lighter wine, but with fruit to match the herbs. Try Torrontes, Pinot Gris or a White Rhone Blend'
                         },
                         'hot spices': {
-                            'id': '3118'
+                            'id': '3118',
+                            'blurb': 'Hot spice with white fish matches well with a hint of sweetness in the wine. Try Gewurtztraminer, Riesling, Alsace Pinot Gris or Rose'
                         },
                         'lemon': {
-                            'id': '3119'
+                            'id': '3119',
+                            'blurb': 'White fish is delicate and light and the citrus adds acid, so the wine should have a good amount of acid without overpowering the food. Try Sauvignon Blanc, Pinot Blanc or Chenin Blanc'
                         },
                         'citrus': {
-                            'id': '3119'
+                            'id': '3119',
+                            'blurb': 'White fish is delicate and light and the citrus adds acid, so the wine should have a good amount of acid without overpowering the food. Try Sauvignon Blanc, Pinot Blanc or Chenin Blanc'
                         },
                         'lemon or citrus': {
-                            'id': '3119'
+                            'id': '3119',
+                            'blurb': 'White fish is delicate and light and the citrus adds acid, so the wine should have a good amount of acid without overpowering the food. Try Sauvignon Blanc, Pinot Blanc or Chenin Blanc'
                         },
                         'stew': {
-                            'id': '3120'
+                            'id': '3120',
+                            'blurb': 'Fish stew can have a number of flavors, so try something delicate and crisp, like Chablis or Muscadet. For more fruit, go with Albarino, Rueda or Chenin Blanc'
                         },
                         'fish tacos': {
-                            'id': '3121'
+                            'id': '3121',
+                            'blurb': 'Fish tacos, while delicate, also have spice. Try something with ripe fruit and maybe a hint of sweetness like Oregon Pinot Gris, Riesling or Gewurtztraminer'
                         },
                         'fried': {
-                            'id': '3122'
+                            'id': '3122',
+                            'blurb': 'The richness of fried fish matches well with a creamy white. Try Chardonnay, Viognier or White Rhone blends.'
                         }
                     }
                 }
