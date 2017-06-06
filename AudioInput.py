@@ -16,8 +16,7 @@ def waitUntilEnter():
         s = input("Hit enter when you are done speaking.")
 
 """
-    Records audio input from user, saves it as a file, and returns the filename.  If
-    an error occurs, it returns None.
+    Records audio input from user and yields the data.
 """
 def getAudioInput(output_file_name = WAVE_OUTPUT_FILENAME):
 
@@ -43,12 +42,6 @@ def getAudioInput(output_file_name = WAVE_OUTPUT_FILENAME):
                     rate=rate,
                     input=True,
                     frames_per_buffer=CHUNK)
-
-    # wait until user hits enter
-    try:
-        s = raw_input("Hit enter when you are ready to speak.")
-    except AttributeError:
-        s = input("Hit enter when you are ready to speak.")
 
     # set up to record
     t = threading.Thread(target=waitUntilEnter)
