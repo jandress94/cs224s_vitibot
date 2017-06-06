@@ -143,16 +143,16 @@ If no question is present, then no more categories to loop over.
 
 foodPairings = {
     'id': None,
-    'question': 'Do you plan on having a meal with the wine?  If so, please pick one of the following options: Meat, cheese, dessert, pasta and grains, poultry, seafood, or none of these.',
+    'question': 'Do you plan on having a meal with the wine?  For example, will you have meat, cheese, dessert, pasta and grains, poultry, seafood, or none of these?',
     'categories': {
         'meat': {
             'id': '3008',
-            'question': 'Any specific kind of meat?  Beef, lamb, pork, veal, or none of these?',
+            'question': 'Will it be beef, lamb, pork, veal, or none of these?',
             'categories': {
                 'beef': {
                     'id': '3015',
                     'blurb': 'Beef has lots of protein and some fat as well, which need wine with good structure and tannin, such as Cabernet Sauvignon, Merlot, Bordeaux blends, Nebbiolo, Malbec or Petite Sirah',
-                    'question': 'How will you be preparing the beef?  Please pick one of the following options that best describes the preparation: With herbs, hot spices, mushroom, as a stew, barbeque, burgers, or none of these.',
+                    'question': 'How will you be preparing the beef?  Will it be with herbs, hot spices, mushroom, as a stew, barbeque, burgers, or none of these?',
                     'categories': {
                         'herbs': {
                             'id': '3019',
@@ -183,7 +183,7 @@ foodPairings = {
                 'lamb': {
                     'id': '3016',
                     'blurb': 'A gamey meat, lamb pairs well with wine that has herbal or gamey notes. Try red wines from the Rhone, like Chateauneuf-du-Pape, and Pinotage or Bordeaux',
-                    'question': 'Anything you will be having with the lamb?  Herbs, hot spices, or none of these?',
+                    'question': 'Will you be putting herbs, hot spices, or none of these on the lamb?',
                     'categories': {
                         'herbs': {
                             'id': '3025',
@@ -198,7 +198,7 @@ foodPairings = {
                 'pork': {
                     'id': '3017',
                     'blurb': 'Pork, the "other" white meat, is generally mild when served plain. Classic pairings include Pinot Noir, Cotes-du-Rhone and Tempranillo - all have a healthy balance of fresh fruit and acidity.',
-                    'question': 'How will you be preparing the pork?  Please pick one option:  with herbs, hot spices, mushrooom, fruit, as sausage, tenderloin, barbeque, breaded, or none of these.',
+                    'question': 'What do you plan on doing with the pork?  Do you want to add herbs, hot spices, mushrooom, or fruit?  Or instead will you have it as sausage, tenderloin, barbeque, breaded, or none of these?',
                     'categories': {
                         'herbs': {
                             'id': '3027',
@@ -237,7 +237,7 @@ foodPairings = {
                 'veal': {
                     'id': '3018',
                     'blurb': 'Veal is a delicate meat, but with distinct flavors. Try a rose (particularly of the sparkling kind),a Viognier or white Bordeaux if you\'re up for white. For reds, a Merlot or Pinot Noir will pair nicely.',
-                    'question': 'How will you be preparing the pork?  Please pick one of the following options: With herbs, lemon / citrus, mushroom, breaded, in chops, or none of these?',
+                    'question': 'Several ways of preparing pork would be with herbs, lemon / citrus, mushroom, breaded, and in chops.  Which one do you plan on doing?',
                     'categories': {
                         'herbs': {
                             'id': '3035',
@@ -273,7 +273,7 @@ foodPairings = {
         },
         'cheese': {
             'id': '3009',
-            'question': 'What kind of cheese do you have in mind?  There\s blue, cheddar, creamy, goat, hard, semi-firm, stinky, or none of these.  Please only pick one.',
+            'question': 'What kind of cheese do you have in mind?  There\'s blue, cheddar, creamy, goat, hard, semi-firm, stinky, and of course none of these.',
             'categories': {
                 'blue': {
                     'id': '3040',
@@ -307,7 +307,7 @@ foodPairings = {
         },
         'dessert': {
             'id': '3010',
-            'question': 'What kind of dessert will you be having?  Will it be berries, chocolate, cream / custard, lemon, or none of these?  Please only pick one.',
+            'question': 'Will you be having berries, chocolate, cream / custard, lemon, or none of these for dessert?',
             'categories': {
                 'berries': {
                     'id': '3047',
@@ -337,7 +337,7 @@ foodPairings = {
         },
         'pasta and grains': {
             'id': '3012',
-            'question': 'What kind of pasta do you have in mind?  There\'s lasagne, paella, pasta, pizza, risotto, or none of these.  Please only pick one.',
+            'question': 'Several kinds of pasta / grains I am familiar with include lasagne, paella, actual pasta, pizza, and risotto.  Let me know which one you plan on having, or tell me that it is none of these if so.',
             'categories': {
                 'lasagne': {
                     'id': '3055',
@@ -360,7 +360,7 @@ foodPairings = {
                 'pasta': {
                     'id': '3057',
                     'blurb': 'Pasta, a fairly bland food, is enhanced with butter or olive oil. Try a mild white, like Italian white, Spanich white or a White Rhone Blend',
-                    'question': 'What kind of pasta?  Please pick one of the following options: meat, mushroom, pesto, tomato-base, vegetable, white sauce, cream-based, or none of these.',
+                    'question': 'There are a lot of choices for pasta.  They include meat, mushroom, pesto, tomato-base, vegetable, white sauce, and cream-based.  Let me know which one, or tell me that it is none of them if so.',
                     'categories': {
                         'meat': {
                             'id': '3067',
@@ -394,7 +394,7 @@ foodPairings = {
                 },
                 'pizza': {
                     'id': '3058',
-                    'question': 'Will the pizza\s main ingredient be meat, vegetable, or none of these?  Please pick only one.',
+                    'question': 'Will the pizza\'s main ingredient be meat, vegetable, or none of these?',
                     'categories': {
                         'meat': {
                             'id': '3062',
@@ -408,7 +408,7 @@ foodPairings = {
                 },
                 'risotto': {
                     'id': '3059',
-                    'question': 'Any specific kind of risotto in mind?  Mushroom, plain, primavera, or none of these?  Please pick only one.',
+                    'question': 'Any specific kind of risotto in mind?  There is mushroom, plain, and primavera.',
                     'categories': {
                         'mushroom': {
                             'id': '3064',
@@ -428,7 +428,7 @@ foodPairings = {
         },
         'poultry': {
             'id': '3013',
-            'question': 'Anything in specific?  Cassoulet, chicken, duck, turkey, or none of these?  Please pick only one.',
+            'question': 'Will it be cassoulet, chicken, duck, turkey, or none of these?',
             'categories': {
                 'cassoulet': {
                     'id': '3074',
@@ -437,7 +437,7 @@ foodPairings = {
                 'chicken': {
                     'id': '3075',
                     'blurb': 'Chicken is a mild meat and served plain, could match with just about anything, as it won\'t overpower the wine. It does particularly well with Chardonnay, Italian whites or White Rhone Blends',
-                    'question': 'How will you be preparing the chicken?  Please pick one of the following options: With herbs, lemon / citrus, mushroom, mustard, spicy, as a barbeque, cream-based, fried, or none of these.',
+                    'question': 'There are many ways of preparing chicken, several which includes with herbs, lemon / citrus, mushroom, mustard, spicy, as a barbeque, cream-based, and of course fried.  Which one is it?',
                     'categories': {
                         'herbs': {
                             'id': '3078',
@@ -484,7 +484,7 @@ foodPairings = {
                 'duck': {
                     'id': '3076',
                     'blurb': 'Pinot Noir is a classic match with a simple duck dish',
-                    'question': 'How will you be preparing the duck?  Please pick one of the following options: seared, confit, fois gras, with fruit, or none of these.',
+                    'question': 'Will the duck be seared, confit, fois gras, with fruit, or none of these?',
                     'categories': {
                         'seared': {
                             'id': '3086',
@@ -507,7 +507,7 @@ foodPairings = {
                 'turkey': {
                     'id': '3077',
                     'blurb': 'Roasted turkey is a bit heavier than other turkeys. Try an aromatic, fruit-forward white like Riesling or a juicy Syrah from Washignton State or California',
-                    'question': 'How will you be preparing the turkey?  Will it be with lemon, roasted, breaded, or none of these?  Please pick only one option.',
+                    'question': 'For preparing the turkey, will it be with lemon, roasted, breaded, or none of these?',
                     'categories': {
                         'lemon': {
                             'id': '3090',
@@ -527,7 +527,7 @@ foodPairings = {
         },
         'seafood': {
             'id': '3014',
-            'question': 'What kind of seafood do you have in mind?  Is it crab, lobster, oysters, salmon, scallops, shrimp, sushi, tuna, white fish, or none of these?  Please pick only one option.',
+            'question': 'Is it crab, lobster, oysters, salmon, scallops, shrimp, sushi, tuna, white fish, or none of these?  If it is multiple, let me know which one will mainly make up the meal.',
             'categories': {
                 'crab': {
                     'id': '3093',
@@ -567,7 +567,7 @@ foodPairings = {
                 },
                 'salmon': {
                     'id': '3096',
-                    'question': 'How will you be preparing the salmon?  Will it be with herbs, with mustard, grilled, or none of these?  Please pick only one option.',
+                    'question': 'Several ways of preparing salmon include with herbs, with mustard, and grilled.  Let me know which one, if any.',
                     'categories': {
                         'herbs': {
                             'id': '3107',
@@ -585,7 +585,7 @@ foodPairings = {
                 },
                 'scallops': {
                     'id': '3097',
-                    'question': 'How will you prepare the scallops?  Will it be with herbs, lemon / citrus, butter, or none of these?  Please pick only one option.',
+                    'question': 'How will you prepare the scallops?  Will it be with herbs, lemon / citrus, butter, or none of these?',
                     'categories': {
                         'herbs': {
                             'id': '3110',
@@ -611,7 +611,7 @@ foodPairings = {
                 },
                 'shrimp': {
                     'id': '3098',
-                    'question': 'What will you be having with the shrimp?  Will it be lemon / citrus, herbs, or none of these?  Please pick only one option.',
+                    'question': 'Do you plan on having the shrimp with lemon / citrus, herbs, or none of these?',
                     'categories': {
                         'lemon': {
                             'id': '3113',
@@ -638,7 +638,7 @@ foodPairings = {
                 'tuna': {
                     'id': '3100',
                     'blurb': 'Seared tuna is a heavier fish and goes well with Pinot Noir or Oregon Pinot Gris',
-                    'question': 'How will you be preparing the tuna?  Will it be seared, spicy, or none of these?  Please pick only one option.',
+                    'question': 'Is it going to be seared tuna or spicy tuna?',
                     'categories': {
                         'seared': {
                             'id': '3115',
@@ -653,7 +653,7 @@ foodPairings = {
                 'white fish': {
                     'id': '3101',
                     'blurb': 'White fish can be delicate, yet meaty. Best to have a good wine with balance and not too many flavors to overwhelm the fish. Try Pinot Blanc, White Rhone blends or Pinot Grigio',
-                    'question': 'How will you be preparing the white fish?  Please pick one of the following options: with herbs, hot spices, lemon / citrus, as a stew, fish tacos, fried, or none of these.',
+                    'question': 'What will you be doing with the white fish?  Will you add herbs, hot spices, or lemon / citrus to it?  Or instead will you have it as a stew, fish tacos, or fried?',
                     'categories': {
                         'herbs': {
                             'id': '3117',
