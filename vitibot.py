@@ -1,6 +1,8 @@
 import sys
 from VitibotWitLink import *
 from VitibotState import *
+from dialog_driver import respondToDialog
+import pdb
 
 print " __      ___ _   _ ____        _   "
 print " \ \    / (_) | (_)  _ \      | |  "
@@ -15,6 +17,7 @@ if '-h' in flags or '--help' in flags:
     print("-t: typed input to vitibot rather than spoken")
     print("-v: verbose")
     print("-b: use baseline implementation")
+    print("-d: debug")
     sys.exit(0)
 
 verbose = '-v' in flags
@@ -22,12 +25,16 @@ verbose = '-v' in flags
 inputMethod = 'typed' if '-t' in flags else 'spoken'
 useBaseline = '-b' in flags
 
+if "-d" in flags:
+    pdb.set_trace()
+
 vitibotState = VitibotState(verbose = verbose, useBaseline = useBaseline)
 witLink = VitibotWitLink(verbose = verbose)
 
-print "Hello there!  I am your personal wine expert.  Let me know if there is anything I can search for you.\n"
+print "Hello there!  I am VitiBot, your personal wine expert.  Let me know if there is anything I can search for you.\n"
+
 
 while True:
     parsedInput = witLink.getParsedInput(inputMethod = inputMethod)
-    vitibotResponse = vitibotState.respondToDialog(parsedInput)
+    vitibotResponse = respondToDialog(parsedInput, vitibotState)
     print(vitibotResponse)

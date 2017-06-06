@@ -337,7 +337,7 @@ foodPairings = {
         },
         'pasta and grains': {
             'id': '3012',
-            'question': 'Several kinds of pasta / grains I am familiar with include lasagne, paella, actual pasta, pizza, and risotto.  Let me know which one you plan on having, or tell me that it is none of these if so.',
+            'question': 'The several kinds of pasta / grains I am familiar with include lasagne, paella, actual pasta, pizza, and risotto.  Let me know which one you plan on having, or tell me that it is none of these if so.',
             'categories': {
                 'lasagne': {
                     'id': '3055',

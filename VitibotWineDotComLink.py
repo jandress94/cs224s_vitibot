@@ -55,11 +55,12 @@ def getFilters(filledSlots, verbose = False):
             max_price = value
             changedPrice = True
         elif key == 'pairing':
-            foods = value.split('+')
+            # value is a list
             curr_food_dict = foodPairings
-            for i in xrange(0, len(foods)):
-                if 'categories' in curr_food_dict and foods[i] in curr_food_dict['categories']:
-                    curr_food_dict = curr_food_dict['categories'][foods[i]]
+
+            for i in xrange(len(value)):
+                if 'categories' in curr_food_dict and value[i] in curr_food_dict['categories']:
+                    curr_food_dict = curr_food_dict['categories'][value[i]]
                 else:
                     break
             id = curr_food_dict['id']

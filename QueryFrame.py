@@ -1,4 +1,5 @@
 from QuerySlot import *
+import random
 
 class QueryFrame:
     def __init__(self):
@@ -28,7 +29,9 @@ class QueryFrame:
         return True
 
     def getUnfilledSlotPrompts(self):
-        return [key for key in self.slots if self.slots[key].shouldPromptUser()]
+        unfilled = [key for key in self.slots if self.slots[key].shouldPromptUser()]
+        random.shuffle(unfilled)
+        return unfilled
 
     def getFilledSlots(self):
         return {key: self.slots[key] for key in self.slots if self.slots[key].value is not None}
