@@ -159,9 +159,13 @@ def handleQuestion(question, parsedInput, state):
     elif hasattr(question, 'invalid_response'):
         return question.invalid_response + '\n'
 
+def resetQuery(entities, state):
+    state.reset()
+    return 'What can I help you find?\n'
 
 actions = {
-    'setQuery': setQueryParams
+    'setQuery': setQueryParams,
+    'resetQuery': resetQuery
 }
 
 what_color_quest = Question('Do you have a preferred type of wine? If so, what kind? Common colors are red, white, and rose.') \
@@ -173,13 +177,13 @@ price_range_quest = Question("Are you on a budget? If so, what's your spending r
                         .set_no_response(True, text = "Ok, I won't take price into account when selecting a wine.  Don't be mad if I pick an expensive one though! ;-)") \
                         .add_valid_entity_response('min', setQueryParams) \
                         .add_valid_entity_response('max', setQueryParams)
-
 have_a_pairing_quest = Question(foodPairings['question']) \
                         .set_yes_response(False, text = "I know about the following types of food: %s, or none.\nLet me know which one is the closest match for your meal."%(', '.join(foodPairings['categories'].keys()))) \
                         .set_no_response(True, text = "No problem, I'll pick a wine that stands well on its own.") \
                         .add_valid_entity_response('type', pairingProgression) \
                         .add_valid_entity_response('main_ingredient', pairingProgression) \
                         .add_invalid_entity_response("If you are planning to have a meal with the wine, let me know which of these categories it is closest to: %s.  If you aren't having a meal, just let me know." % (', '.join(foodPairings['categories'].keys())))
+
 
 def prompt_for_info(state):
     missing = state.queryFrame.getUnfilledSlotPrompts()
@@ -196,21 +200,6 @@ def prompt_for_info(state):
                 state.operationsStack.append(have_a_pairing_quest)
                 return have_a_pairing_quest.question_text
 
-    # # Everything from this point on is just for a baseline.  As long as the request is not empty, execute the query and give back the first wine
-    # if self.queryFrame.isEmpty():
-    #     print "I didn't get any query information from that statement."
-    # else:
-    #     self.currentState()
-
-    # if prompt != "":
-    #     return "I need some more information.\n" + prompt + "\n"
-
-    # self.executeQuery()
-    # # save old queryFrame to list
-    # self.previousQueries.append(self.queryFrame)
-    # self.clearQueryFrame()
-    # # clear operation stack
-    # self.operationsStack = []
 
 def setWineListIndex(entities, state, manualIndex = None):
     if manualIndex is not None:
@@ -221,8 +210,9 @@ def setWineListIndex(entities, state, manualIndex = None):
     if state.wineListIndex >= len(state.wineList):
         return 'Unfortunately, that is more than the number of wines I found for you!'
 
-    response = "Here is the information about the chosen wine:\n%s\n\nI hope you enjoy the recommendation!" % (str(state.wineList[state.wineListIndex]))
+    response = "Here is the information about the chosen wine:\n\n%s\n\nI hope you enjoy the recommendation!  Let me know when you want to start a new search." % (str(state.wineList[state.wineListIndex]))
     return response
+
 
 def performSearch(entities, state):
     state.wineList = executeWineQuery(state.queryFrame, verbose = state.verbose)
@@ -232,6 +222,7 @@ def performSearch(entities, state):
         return "I'm sorry, but I could not find a good wine which matches your description.  Let me know what you want to change about your query.\n"
     return setWineListIndex(entities, state, manualIndex = 0)
 
+
 def askIfShouldSearch(state):
     shouldSearchQuestion = Question("Have you told me everything that you're looking for?") \
                         .set_yes_response(True, func = performSearch) \
@@ -240,8 +231,10 @@ def askIfShouldSearch(state):
     state.operationsStack.append(shouldSearchQuestion)
     return shouldSearchQuestion.question_text
 
+
 def shouldAskAnotherQuestion(state):
-    return len(state.operationsStack) == 0 or not isinstance(state.operationsStack[-1], Question) or state.operationsStack[-1].answered
+    return state.numTurns > 0 and (len(state.operationsStack) == 0 or not isinstance(state.operationsStack[-1], Question) or state.operationsStack[-1].answered)
+
 
 '''
 This is the function that serves as the main interface between the state and the outside world.
@@ -250,6 +243,8 @@ Based on the intent that Wit detects, it will call one of various other function
 It returns a string that should be printed as Vitibot's part of the dialog.
 '''
 def respondToDialog(parsedInput, state):
+    state.numTurns += 1
+
     if state.verbose:
         print parsedInput
         print state.operationsStack

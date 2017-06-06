@@ -36,5 +36,6 @@ print "Hello there!  I am VitiBot, your personal wine expert.  Let me know if th
 
 while True:
     parsedInput = witLink.getParsedInput(inputMethod = inputMethod)
+    print('\n')
     vitibotResponse = respondToDialog(parsedInput, vitibotState)
     print(vitibotResponse)
