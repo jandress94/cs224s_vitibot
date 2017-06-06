@@ -82,7 +82,7 @@ def executeWineQuery(queryFrame, verbose = False):
     
     payload = {
         'filter': '+'.join(filtersWithNames),
-        'size': 5,
+        'size': 20,
         'apikey': wine_access_token,
         'state': 'CA',
         'sort': 'popularity|descending'
@@ -96,4 +96,12 @@ def executeWineQuery(queryFrame, verbose = False):
 
     if verbose:
         print("full result json from wine query: %s" % (str(r.json())))
-    return [Wine(wineJson) for wineJson in r.json()['Products']['List']]
+
+    wineList = []
+    for wineJson in r.json()['Products']['List']:
+        try:
+            wineList.append(Wine(wineJson))
+        except Exception:
+            pass
+
+    return wineList[:5]
