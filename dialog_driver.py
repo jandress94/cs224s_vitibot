@@ -56,6 +56,9 @@ def pairingProgression(entities, state):
 
     state.queryFrame.setSlotValue('pairing', current_pairing_state)
 
+    if state.useBaseline:
+        return ''
+
     state.operationsStack.append(pairing_question)
     return pairing_question.question_text
 
@@ -265,7 +268,7 @@ def respondToDialog(parsedInput, state):
     response = ''
 
     # first, check if the operations stack is non-empty
-    if not state.useBaseline and len(state.operationsStack) > 0:
+    if len(state.operationsStack) > 0:
         lastOp = state.operationsStack[-1]
         if isinstance(lastOp, Question) and not lastOp.answered:
             quest_response = handleQuestion(lastOp, parsedInput, state)
