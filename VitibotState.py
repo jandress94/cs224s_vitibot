@@ -41,7 +41,7 @@ class VitibotState:
             ack = ack + (" costing no more than %d dollars"%(params['max_price'].getValue()))
         ack += "."
         if 'pairing' in params:
-            ack = ack + (" I will keep in mind that this wine should pair well with your choices of food: %s."%(', '.join(params['pairing'].getValue().split('+'))))
+            ack = ack + (" Recalling your food choices, they are: %s.  I'll see what wine pairs well with that."%(', '.join(params['pairing'].getValue().split('+'))))
         print(ack)
 
     def promptPairing(self, entities):
@@ -178,7 +178,7 @@ class VitibotState:
             elif len(p) == 1:
                 food_entry = foodPairings['categories'][p[0]]
             if 'blurb' in food_entry:
-                print "A blurb about your food choice: " + food_entry['blurb']
+                print "About your food choice: " + food_entry['blurb']
 
         self.executeQuery()
         # save old queryFrame to list
@@ -192,7 +192,7 @@ class VitibotState:
         elif len(self.wineList) == 0:
             return "I'm sorry, but I could not find a good wine which matches your description.  You can try a different search.\n"
         else:
-            return "Here is the wine I chose for you:\n%s\n\nYou can now start a new search." % (str(self.wineList[0]))
+            return "Here is the wine I chose for you:\n%s\n\n  I hope you enjoy the recommendation!\nFeel free to start a new search." % (str(self.wineList[0]))
 
     def clearQueryFrame(self, entities = None):
         self.queryFrame = QueryFrame()

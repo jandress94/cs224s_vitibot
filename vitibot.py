@@ -23,6 +23,8 @@ witLink = VitibotWitLink(verbose = verbose)
 
 inputMethod = 'typed' if '-t' in flags else 'spoken'
 
+print "Hello there!  I am your personal wine expert.  Let me know if there is anything I can search for you.\n"
+
 while True:
     parsedInput = witLink.getParsedInput(inputMethod = inputMethod)
     vitibotResponse = vitibotState.respondToDialog(parsedInput)
