@@ -14,13 +14,17 @@ class VitibotWitLink:
     '''
     The input method can be either 'typed' or 'spoken'
     '''
-    def getParsedInput(self, inputMethod = 'typed'):
+    def getParsedInput(self, inputMethod = 'typed', fd=None):
         assert inputMethod == 'typed' or inputMethod == 'spoken'
 
         while True:
             if inputMethod == 'typed':
                 message = prompt('> ', mouse_support=True).rstrip()
                 jsonResponse = self.witClient.message(message)
+            elif inputMethod == 'file':
+                jsonResponse = self.witClient.speech(fd, headers = {'Content-Type': 'audio/wav'})
+                if self.verbose:
+                    print jsonResponse
             else:
                 jsonResponse = self.witClient.speech(getAudioInput(), headers = {'Content-Type': 'audio/raw;encoding=signed-integer;bits=16;rate=88200;endian=little'})
                 if self.verbose:
