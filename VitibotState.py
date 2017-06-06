@@ -231,6 +231,7 @@ class VitibotState:
     It returns a string that should be printed as Vitibot's part of the dialog.
     '''
     def respondToDialog(self, parsedInput):
+        print parsedInput
         if self.verbose: print parsedInput
         # first, check if the operations stack is non-empty
         lastOp = None
@@ -256,7 +257,7 @@ class VitibotState:
                     self.operationsStack.append("answered")
                     return self.setQueryParams(parsedInput)
 
-            if ('min_price' in parsedInput or 'max_price' in parsedInput) and lastOp == 'max_price':
+            if ('min' in parsedInput or 'max' in parsedInput) and lastOp == 'max_price':
                 # set price slots
                 self.operationsStack.append("answered")
                 return self.setQueryParams(parsedInput)
