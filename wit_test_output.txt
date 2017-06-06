@@ -1,0 +1,123 @@
+Test 0 correct.
+Test 1 correct.
+Test 2 does not match. 3/4 entities present. 3/4 entity values correct.
+{'color': 'white', 'max': 50, 'intent': 'setQuery', 'min': 20}
+{u'color': [{u'confidence': 0.9668248019896757, u'type': u'value', u'value': u'white'}], u'max': [{u'confidence': 0.9497935448655205, u'type': u'value', u'unit': u'$', u'value': 50}], u'intent': [{u'confidence': 0.9999999993332267, u'value': u'setQuery'}]}
+Test 3 does not match. 0/1 entities present. 0/1 entity values correct.
+{'type': 'seafood'}
+{}
+Test 4 does not match. 0/2 entities present. 0/2 entity values correct.
+{'style': 'meat', 'type': 'meat'}
+{}
+Test 5 does not match. 1/2 entities present. 1/2 entity values correct.
+{'color': 'rose', 'intent': 'setQuery'}
+{u'intent': [{u'confidence': 0.7631309061019447, u'value': u'setQuery'}]}
+Test 6 correct.
+Test 7 correct.
+Test 8 does not match. 2/3 entities present. 2/3 entity values correct.
+{'max': 60, 'intent': 'setQuery', 'min': 40}
+{u'max': [{u'confidence': 0.8869039877768558, u'type': u'value', u'unit': u'$', u'value': 60}], u'intent': [{u'confidence': 0.9995139759551058, u'value': u'setQuery'}]}
+Test 9 correct.
+Test 10 does not match. 0/2 entities present. 0/2 entity values correct.
+{'main_ingredient': 'goat', 'binary': 'no'}
+{}
+Test 11 correct.
+Test 12 does not match. 0/1 entities present. 0/1 entity values correct.
+{'style': 'pesto'}
+{}
+Test 13 does not match. 1/2 entities present. 1/2 entity values correct.
+{'color': 'rose', 'intent': 'setQuery'}
+{u'intent': [{u'confidence': 0.5775252886217607, u'value': u'setQuery'}]}
+Test 14 does not match. 0/1 entities present. 0/1 entity values correct.
+{'max': 100}
+{u'intent': [{u'confidence': 0.9956471418043796, u'value': u'setQuery'}], u'amount_of_money': [{u'confidence': 0.9974574022139973, u'type': u'value', u'unit': u'$', u'value': 100}]}
+Test 15 correct.
+Test 16 does not match. 0/1 entities present. 0/1 entity values correct.
+{'binary': 'no'}
+{}
+Test 17 correct.
+Test 18 does not match. 1/2 entities present. 1/2 entity values correct.
+{'binary': 'yes', 'style': 'herbs'}
+{u'binary': [{u'confidence': 1, u'type': u'value', u'value': u'yes'}], u'intent': [{u'confidence': 0.6106110864723264, u'value': u'setQuery'}]}
+Test 19 correct.
+Test 20 does not match. 1/2 entities present. 1/2 entity values correct.
+{'main_ingredient': 'white fish', 'color': 'white'}
+{u'main_ingredient': [{u'confidence': 1, u'type': u'value', u'value': u'white fish'}], u'intent': [{u'confidence': 0.9728327836986227, u'value': u'setQuery'}]}
+Test 21 correct.
+Test 22 correct.
+Test 23 does not match. 1/2 entities present. 1/2 entity values correct.
+{'main_ingredient': 'veal', 'intent': 'setQuery'}
+{u'intent': [{u'confidence': 0.9999947949171171, u'value': u'setQuery'}]}
+Test 24 does not match. 1/1 entities present. 0/1 entity values correct.
+{'main_ingredient': 'duck'}
+{u'main_ingredient': [{u'confidence': 1, u'type': u'value', u'value': u'chicken'}], u'intent': [{u'confidence': 0.9999973126563391, u'value': u'setQuery'}]}
+Test 25 does not match. 0/1 entities present. 0/1 entity values correct.
+{'style': 'roasted'}
+{u'intent': [{u'confidence': 0.590005611133337, u'value': u'setQuery'}]}
+Test 26 correct.
+Test 27 does not match. 2/3 entities present. 2/3 entity values correct.
+{'max': 70, 'intent': 'setQuery', 'min': 40}
+{u'max': [{u'confidence': 0.8448336166149816, u'type': u'value', u'unit': u'$', u'value': 70}], u'intent': [{u'confidence': 0.9999938105875525, u'value': u'setQuery'}]}
+Test 28 does not match. 0/1 entities present. 0/1 entity values correct.
+{'main_ingredient': 'duck'}
+{}
+Test 29 correct.
+Test 30 does not match. 0/2 entities present. 0/2 entity values correct.
+{'varietal': 'pinot noir', 'intent': 'setQuery'}
+{}
+Test 31 correct.
+Test 32 correct.
+Test 33 correct.
+Test 34 correct.
+Test 35 does not match. 1/2 entities present. 1/2 entity values correct.
+{'color': 'red', 'intent': 'setQuery'}
+{u'intent': [{u'confidence': 0.9966361603683028, u'value': u'setQuery'}]}
+Test 36 correct.
+Test 37 does not match. 0/1 entities present. 0/1 entity values correct.
+{'main_ingredient': 'shrimp'}
+{}
+Test 38 correct.
+Test 39 correct.
+Test 40 does not match. 3/4 entities present. 3/4 entity values correct.
+{'color': 'white', 'vintage': '2014', 'intent': 'setQuery', 'max': 60}
+{u'color': [{u'confidence': 0.9246724262503372, u'type': u'value', u'value': u'white'}], u'max': [{u'confidence': 0.8035619014149233, u'type': u'value', u'unit': u'$', u'value': 60}], u'intent': [{u'confidence': 0.9999877182627662, u'value': u'setQuery'}]}
+Test 41 correct.
+Test 42 correct.
+Test 43 correct.
+Test 44 does not match. 0/1 entities present. 0/1 entity values correct.
+{'vintage': 2005}
+{u'intent': [{u'confidence': 0.8732222103967698, u'value': u'setQuery'}]}
+Test 45 does not match. 3/4 entities present. 3/4 entity values correct.
+{'color': 'white', 'vintage': 2007, 'intent': 'setQuery', 'max': 50}
+{u'color': [{u'confidence': 0.8862168736560977, u'type': u'value', u'value': u'white'}], u'max': [{u'confidence': 0.908434961603517, u'type': u'value', u'unit': u'$', u'value': 50}], u'intent': [{u'confidence': 0.9999645057392189, u'value': u'setQuery'}]}
+Test 46 correct.
+Test 47 correct.
+Test 48 correct.
+Test 49 correct.
+Test 50 correct.
+Test 51 does not match. 2/3 entities present. 2/3 entity values correct.
+{'color': 'white', 'varietal': 'pinot gris', 'intent': 'setQuery'}
+{u'color': [{u'confidence': 0.9951286964659748, u'type': u'value', u'value': u'white'}], u'intent': [{u'confidence': 0.9650452272158969, u'value': u'setQuery'}]}
+Test 52 does not match. 0/1 entities present. 0/1 entity values correct.
+{'binary': 'no'}
+{}
+Test 53 does not match. 0/1 entities present. 0/1 entity values correct.
+{'binary': 'no'}
+{}
+Test 54 does not match. 0/1 entities present. 0/1 entity values correct.
+{'main_ingredient': 'chicken'}
+{}
+Test 55 does not match. 0/1 entities present. 0/1 entity values correct.
+{'intent': 'setQuery'}
+{}
+Test 56 does not match. 1/2 entities present. 1/2 entity values correct.
+{'vintage': 1979, 'intent': 'setQuery'}
+{u'intent': [{u'confidence': 0.9996638558191655, u'value': u'setQuery'}]}
+Test 57 does not match. 1/2 entities present. 1/2 entity values correct.
+{'max': 27, 'intent': 'setQuery'}
+{u'intent': [{u'confidence': 0.9982280199392141, u'value': u'setQuery'}], u'min': [{u'confidence': 0.960889365071407, u'type': u'value', u'unit': u'$', u'value': 27}]}
+=========================
+Utterance Acc. (All entities present + correct): 28/58 (0.482759 accurate)
+Entity (Present + Correct) Acc. 54/87 (0.620690)
+Entity Error (Present + Incorrect): 1/87 (0.011494)
+Missing Entities (Not Present): 32/87 (0.367816)

@@ -1,0 +1,85 @@
+Test 0 correct.
+Test 1 does not match. 1/2 entities present. 1/2 entity values correct.
+{'color': 'red', 'intent': 'setQuery'}
+{u'color': [{u'confidence': 0.99646293674461, u'type': u'value', u'value': u'red'}]}
+Test 2 does not match. 3/4 entities present. 3/4 entity values correct.
+{'color': 'white', 'max': 50, 'intent': 'setQuery', 'min': 20}
+{u'color': [{u'confidence': 0.99546460496092, u'type': u'value', u'value': u'white'}], u'max': [{u'confidence': 0.98264344965366, u'type': u'value', u'unit': u'$', u'value': 50}], u'intent': [{u'confidence': 0.99999998295517, u'value': u'setQuery'}]}
+Test 3 correct.
+Test 4 correct.
+Test 5 correct.
+Test 6 correct.
+Test 7 correct.
+Test 8 does not match. 2/3 entities present. 2/3 entity values correct.
+{'max': 60, 'intent': 'setQuery', 'min': 40}
+{u'max': [{u'confidence': 0.93927235348342, u'type': u'value', u'unit': u'$', u'value': 60}], u'intent': [{u'confidence': 0.99813452092407, u'value': u'setQuery'}]}
+Test 9 correct.
+Test 10 correct.
+Test 11 correct.
+Test 12 correct.
+Test 13 does not match. 0/2 entities present. 0/2 entity values correct.
+{'color': 'rose', 'intent': 'setQuery'}
+{u'varietal': [{u'suggested': True, u'confidence': 0.49531227325531, u'type': u'value', u'value': u'pink'}]}
+Test 14 correct.
+Test 15 correct.
+Test 16 correct.
+Test 17 correct.
+Test 18 correct.
+Test 19 correct.
+Test 20 correct.
+Test 21 does not match. 2/3 entities present. 2/3 entity values correct.
+{'main_ingredient': 'white fish', 'color': 'white', 'intent': 'setQuery'}
+{u'color': [{u'confidence': 0.99617974222973, u'type': u'value', u'value': u'white'}, {u'confidence': 0.98010277579975, u'type': u'value', u'value': u'white'}], u'intent': [{u'confidence': 0.99999999998936, u'value': u'setQuery'}]}
+Test 22 correct.
+Test 23 correct.
+Test 24 does not match. 1/1 entities present. 0/1 entity values correct.
+{'main_ingredient': 'duck'}
+{u'main_ingredient': [{u'confidence': 1, u'type': u'value', u'value': u'chicken'}, {u'confidence': 1, u'type': u'value', u'value': u'duck'}], u'intent': [{u'confidence': 0.99945620005628, u'value': u'setQuery'}]}
+Test 25 correct.
+Test 26 correct.
+Test 27 does not match. 2/3 entities present. 2/3 entity values correct.
+{'max': 70, 'intent': 'setQuery', 'min': 40}
+{u'max': [{u'confidence': 0.95559532682529, u'type': u'value', u'unit': u'$', u'value': 70}], u'intent': [{u'confidence': 0.99994038194502, u'value': u'setQuery'}]}
+Test 28 correct.
+Test 29 correct.
+Test 30 correct.
+Test 31 correct.
+Test 32 correct.
+Test 33 correct.
+Test 34 correct.
+Test 35 correct.
+Test 36 correct.
+Test 37 correct.
+Test 38 correct.
+Test 39 correct.
+Test 40 does not match. 4/4 entities present. 3/4 entity values correct.
+{'color': 'white', 'vintage': '2014', 'intent': 'setQuery', 'max': 60}
+{u'color': [{u'confidence': 0.99190655188907, u'type': u'value', u'value': u'white'}], u'vintage': [{u'confidence': 0.81788299475888, u'type': u'value', u'value': 2014}], u'intent': [{u'confidence': 0.9995577174893, u'value': u'setQuery'}], u'max': [{u'confidence': 0.93900155694217, u'type': u'value', u'unit': u'$', u'value': 60}]}
+Test 41 correct.
+Test 42 correct.
+Test 43 correct.
+Test 44 correct.
+Test 45 correct.
+Test 46 correct.
+Test 47 correct.
+Test 48 correct.
+Test 49 correct.
+Test 50 correct.
+Test 51 correct.
+Test 52 correct.
+Test 53 does not match. 0/1 entities present. 0/1 entity values correct.
+{'binary': 'no'}
+{u'intent': [{u'confidence': 0.81208882929203, u'value': u'setQuery'}]}
+Test 54 correct.
+Test 55 does not match. 0/1 entities present. 0/1 entity values correct.
+{'intent': 'setQuery'}
+{}
+Test 56 correct.
+Test 57 does not match. 1/2 entities present. 1/2 entity values correct.
+{'max': 27, 'intent': 'setQuery'}
+{u'intent': [{u'confidence': 0.96490747657269, u'value': u'setQuery'}], u'min': [{u'confidence': 0.82254488117891, u'type': u'value', u'unit': u'$', u'value': 27}]}
+=========================
+Utterance Acc. (All entities present + correct): 47/58 (0.810345 accurate)
+Entity (Present + Correct) Acc. 75/87 (0.862069)
+Entity Error (Present + Incorrect): 2/87 (0.022989)
+Missing Entities (Not Present): 10/87 (0.114943)
