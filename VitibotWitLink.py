@@ -26,6 +26,8 @@ class VitibotWitLink:
                 if self.verbose:
                     print jsonResponse
             else:
+                # Wait until user hits enter before beginning the recording.
+                entered = prompt('Hit enter when you are ready to speak.')
                 jsonResponse = self.witClient.speech(getAudioInput(), headers = {'Content-Type': 'audio/raw;encoding=signed-integer;bits=16;rate=88200;endian=little'})
                 if self.verbose:
                     print jsonResponse
