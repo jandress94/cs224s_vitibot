@@ -278,6 +278,9 @@ def respondToDialog(parsedInput, state):
         if intent in actions:
             response += actions[intent](parsedInput, state)
 
+    if state.useBaseline and state.numTurns > 0 and state.wineList is None:
+        return response + performSearch(parsedInput, state)
+
     if shouldAskAnotherQuestion(state):
         prompt = prompt_for_info(state)
         if prompt is not None:
