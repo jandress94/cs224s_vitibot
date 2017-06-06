@@ -15,7 +15,7 @@ class VitibotWitLink:
     The input method can be either 'typed' or 'spoken'
     '''
     def getParsedInput(self, inputMethod = 'typed', fd=None):
-        assert inputMethod == 'typed' or inputMethod == 'spoken'
+        assert inputMethod == 'typed' or inputMethod == 'spoken' or inputMethod == 'file'
 
         while True:
             if inputMethod == 'typed':
