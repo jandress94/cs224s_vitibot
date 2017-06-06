@@ -143,7 +143,6 @@ If no question is present, then no more categories to loop over.
 
 foodPairings = {
     'id': None,
-    'question': 'Do you plan on having a meal with the wine?  If so, what category does it fall under?: Meat, cheese, dessert, pasta and grains, poultry, seafood, or none of these.',
     'question': 'Do you plan on having a meal with the wine?  For example, will you have meat, cheese, dessert, pasta and grains, poultry, seafood, or none of these?',
     'categories': {
         'meat': {

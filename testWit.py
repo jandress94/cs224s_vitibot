@@ -25,6 +25,8 @@ def checkEntities(i, entities):
 			else:
 				v += 1
 				corEnt += 1
+		else:
+			c = False
 	if c:
 		print "Test %d correct."%(i)
 	else:
