@@ -2,6 +2,7 @@ from questions import *
 from WitUtils import *
 from FoodPairings import *
 from VitibotWineDotComLink import *
+import sys
 
 def pairingProgression(entities, state):
     current_pairing_state = state.queryFrame.slots['pairing'].value
@@ -163,9 +164,21 @@ def resetQuery(entities, state):
     state.reset()
     return 'What can I help you find?\n'
 
+def immediately_kill(entities = None, state = None):
+    print("Goodbye!")
+    sys.exit(0)
+
+def askBeforeExiting(entities, state):
+    exit_quest = Question('Are you sure that you want to exit?') \
+                        .set_yes_response(True, func = immediately_kill) \
+                        .set_no_response(True, text = "Thank goodness, I didn't want you to leave!")
+    state.operationsStack.append(exit_quest)
+    return exit_quest.question_text
+
 actions = {
     'setQuery': setQueryParams,
-    'resetQuery': resetQuery
+    'resetQuery': resetQuery,
+    'exit': askBeforeExiting
 }
 
 what_color_quest = Question('Do you have a preferred type of wine? If so, what kind? Common colors are red, white, and rose.') \
