@@ -5,13 +5,14 @@ from Wine import *
 from FoodPairings import *
 
 class VitibotState:
-    def __init__(self, verbose = False):
+    def __init__(self, verbose = False, useBaseline = False):
         self.queryFrame = QueryFrame()
         self.wineList = None
         self.wineListIndex = None
         self.operationsStack = []
         self.previousQueries = []
         self.verbose = verbose
+        self.useBaseline = useBaseline
 
         self.actions = {
             # 'getWine': self.getRandomWine
@@ -142,7 +143,7 @@ class VitibotState:
 
         missing = self.queryFrame.getUnfilledSlotPrompts()
         prompt = ""
-        if len(missing) > 0:
+        if len(missing) > 0 and not self.useBaseline:
             for m in missing:
                 if m not in self.operationsStack:
                     if m == "type" and "varietal" not in self.queryFrame.getFilledSlots(): # TODO: if varietal specified, can skip this?
@@ -192,7 +193,7 @@ class VitibotState:
         elif len(self.wineList) == 0:
             return "I'm sorry, but I could not find a good wine which matches your description.  You can try a different search.\n"
         else:
-            return "Here is the wine I chose for you:\n%s\n\n  I hope you enjoy the recommendation!\nFeel free to start a new search." % (str(self.wineList[0]))
+            return "Here is the wine I chose for you:\n%s\n\nI hope you enjoy the recommendation!\nFeel free to start a new search." % (str(self.wineList[0]))
 
     def clearQueryFrame(self, entities = None):
         self.queryFrame = QueryFrame()
@@ -231,44 +232,44 @@ class VitibotState:
     It returns a string that should be printed as Vitibot's part of the dialog.
     '''
     def respondToDialog(self, parsedInput):
-        print parsedInput
         if self.verbose: print parsedInput
         # first, check if the operations stack is non-empty
-        lastOp = None
-        if len(self.operationsStack) > 0:
-            lastOp = self.operationsStack[-1]
+        if not self.useBaseline:
+            lastOp = None
+            if len(self.operationsStack) > 0:
+                lastOp = self.operationsStack[-1]
 
-        if lastOp is not None:
-            promptedPairing = (lastOp.split("-")[0] == "pairing")
-            if ('binary' in parsedInput and promptedPairing) or ('type' in parsedInput and lastOp == 'pairing-type') or ('main_ingredient' in parsedInput and lastOp == 'pairing-ingredient') or ('style' in parsedInput and lastOp == 'pairing-style'):
-                #print "I need to know more about your meal."
-                return self.promptPairing(parsedInput)
+            if lastOp is not None:
+                promptedPairing = (lastOp.split("-")[0] == "pairing")
+                if ('binary' in parsedInput and promptedPairing) or ('type' in parsedInput and lastOp == 'pairing-type') or ('main_ingredient' in parsedInput and lastOp == 'pairing-ingredient') or ('style' in parsedInput and lastOp == 'pairing-style'):
+                    #print "I need to know more about your meal."
+                    return self.promptPairing(parsedInput)
 
-            if 'color' in parsedInput and lastOp == 'type':
-                # set slot to color
-                self.operationsStack.append("answered")
-                return self.setQueryParams(parsedInput)
-            elif 'binary' in parsedInput and lastOp == 'type':
-                ans = first_entity_value(parsedInput, 'binary')
-                if ans == "yes":
-                    return "What is your preference between red, white, and blush wines?"
-                elif ans == "no":
-                    print "Ok, so you don't have a preference in wine type."
+                if 'color' in parsedInput and lastOp == 'type':
+                    # set slot to color
                     self.operationsStack.append("answered")
                     return self.setQueryParams(parsedInput)
+                elif 'binary' in parsedInput and lastOp == 'type':
+                    ans = first_entity_value(parsedInput, 'binary')
+                    if ans == "yes":
+                        return "What is your preference between red, white, and blush wines?"
+                    elif ans == "no":
+                        print "Ok, so you don't have a preference in wine type."
+                        self.operationsStack.append("answered")
+                        return self.setQueryParams(parsedInput)
 
-            if ('min' in parsedInput or 'max' in parsedInput) and lastOp == 'max_price':
-                # set price slots
-                self.operationsStack.append("answered")
-                return self.setQueryParams(parsedInput)
-            elif 'binary' in parsedInput and lastOp == 'max_price':
-                ans = first_entity_value(parsedInput, 'binary')
-                if ans == "yes":
-                    return "What is price range?"
-                elif ans == "no":
-                    print "Ok, so you don't have a price range."
+                if ('min' in parsedInput or 'max' in parsedInput) and lastOp == 'max_price':
+                    # set price slots
                     self.operationsStack.append("answered")
                     return self.setQueryParams(parsedInput)
+                elif 'binary' in parsedInput and lastOp == 'max_price':
+                    ans = first_entity_value(parsedInput, 'binary')
+                    if ans == "yes":
+                        return "What is price range?"
+                    elif ans == "no":
+                        print "Ok, so you don't have a price range."
+                        self.operationsStack.append("answered")
+                        return self.setQueryParams(parsedInput)
 
         # Now, check to see if we got a classified intent.
         intent = first_entity_value(parsedInput, 'intent')

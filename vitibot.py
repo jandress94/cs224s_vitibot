@@ -14,14 +14,16 @@ flags = set(sys.argv[1:])
 if '-h' in flags or '--help' in flags:
     print("-t: typed input to vitibot rather than spoken")
     print("-v: verbose")
+    print("-b: use baseline implementation")
     sys.exit(0)
 
 verbose = '-v' in flags
 
-vitibotState = VitibotState(verbose = verbose)
-witLink = VitibotWitLink(verbose = verbose)
-
 inputMethod = 'typed' if '-t' in flags else 'spoken'
+useBaseline = '-b' in flags
+
+vitibotState = VitibotState(verbose = verbose, useBaseline = useBaseline)
+witLink = VitibotWitLink(verbose = verbose)
 
 print "Hello there!  I am your personal wine expert.  Let me know if there is anything I can search for you.\n"
 
