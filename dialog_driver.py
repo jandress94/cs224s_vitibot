@@ -30,27 +30,34 @@ def pairingProgression(entities, state):
                     break
 
         pairing_type = current_pairing_state[0]
-        current_pairing_state.append(pairing_ing)
-
-        pair_ing_dict = foodPairings['categories'][pairing_type]['categories'][pairing_ing]
-        if 'question' in pair_ing_dict:
-            no_response = "Ok, I'll make my wine recommendation so that it pairs well with %s: %s in general." % (pairing_type, pairing_ing)
-            if 'blurb' in pair_ing_dict:
-                no_response += " %s" % (pair_ing_dict['blurb'])
-            pairing_question = Question(pair_ing_dict['question']) \
+        if pairing_ing not in foodPairings['categories'][pairing_type]['categories']:
+            pair_type_dict = foodPairings['categories'][pairing_type]
+            pairing_question = Question("That's not a valid ingredient. Main ingredient for %s include: %s, or none.\nLet me know which one is the closest match for your meal, or you can start a new search as well."%(pairing_type,', '.join(pair_type_dict['categories'].keys()))) \
+                                    .add_valid_entity_response('main_ingredient', pairingProgression) \
+                                    .set_no_response(True, text = "That's ok, but I won't be able to make much use of a generic pairing like \"%s\"." % (pairing_type)) \
+                                    .add_invalid_entity_response("That's not a valid ingredient. Main ingredient for %s include: %s, or none.\nLet me know which one is the closest match for your meal."%(pairing_type,', '.join(pair_type_dict['categories'].keys())))
+            
+        else:
+            current_pairing_state.append(pairing_ing)
+            pair_ing_dict = foodPairings['categories'][pairing_type]['categories'][pairing_ing]
+            if 'question' in pair_ing_dict:
+                no_response = "Ok, I'll make my wine recommendation so that it pairs well with %s: %s in general." % (pairing_type, pairing_ing)
+                if 'blurb' in pair_ing_dict:
+                    no_response += " %s" % (pair_ing_dict['blurb'])
+                pairing_question = Question(pair_ing_dict['question']) \
                                     .add_valid_entity_response('style', pairingProgression) \
                                     .set_no_response(True, text = no_response) \
                                     .add_invalid_entity_response("Styles for %s: %s include %s, or none.\nLet me know which one closest matches your meal."%(pairing_type, pairing_ing,', '.join(pair_ing_dict['categories'].keys())))
 
-        else:
-            # No style to choose, so proceed.
-            final_response = "Sounds delicious!  I will definitely take these foods into consideration!"
-            if 'blurb' in pair_ing_dict:
-                final_response += " %s\n" % (pair_ing_dict['blurb'])
             else:
-                final_response += "\n"
-            state.queryFrame.setSlotValue('pairing', current_pairing_state)
-            return final_response
+                # No style to choose, so proceed.
+                final_response = "Sounds delicious!  I will definitely take these foods into consideration!"
+                if 'blurb' in pair_ing_dict:
+                    final_response += " %s\n" % (pair_ing_dict['blurb'])
+                else:
+                    final_response += "\n"
+                state.queryFrame.setSlotValue('pairing', current_pairing_state)
+                return final_response
     elif len(current_pairing_state) == 2 and 'style' in entities:   # They gave a specific style
         pairing_style = first_entity_value(entities, 'style')
         current_pairing_state.append(pairing_style)
@@ -234,6 +241,12 @@ actions = {
     'setWineIndex': setWineListIndex
 }
 
+# Ignores what's on the operations stack, which can mess up queries if unintended.
+override_actions = [
+    'resetQuery',
+    'exit'
+]
+
 
 what_color_quest = Question('Do you have a preferred type of wine? If so, what kind? Common colors are red, white, and rose.') \
                         .set_yes_response(False, text = "Which color do you prefer: red, white, or rose?") \
@@ -302,8 +315,15 @@ def respondToDialog(parsedInput, state):
     if state.verbose:
         print parsedInput
         print state.operationsStack
-
+    
     response = ''
+
+    # Check if we got an override action.
+    actionPerformed = False
+    intent = first_entity_value(parsedInput, 'intent')
+    if intent in override_actions:
+        response += actions[intent](parsedInput, state)
+        actionPerformed = True
 
     # first, check if the operations stack is non-empty
     if len(state.operationsStack) > 0:
@@ -314,7 +334,7 @@ def respondToDialog(parsedInput, state):
                 response += quest_response
 
     # Now, check to see if we got a classified intent.
-    if not response:
+    if not response and not actionPerformed:
         intent = first_entity_value(parsedInput, 'intent')
         if intent in actions:
             response += actions[intent](parsedInput, state)
@@ -335,6 +355,8 @@ def respondToDialog(parsedInput, state):
         return response
 
     if intent is not None:
-        return "I'm sorry, but I don't know how to do that: " + intent
+        if state.verbose:
+            return "I'm sorry, but I don't know how to do that: " + intent
+        return "I'm sorry, but I don't know how to do what you are asking."
 
     return "I'm sorry, but I could not understand your request."
