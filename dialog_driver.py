@@ -20,9 +20,9 @@ def pairingProgression(entities, state):
                                     .set_no_response(True, text = "That's ok, but I won't be able to make much use of a generic pairing like \"%s\"." % (pairing_type)) \
                                     .add_invalid_entity_response("That's not a valid ingredient. Main ingredient for %s include: %s, or none.\nLet me know which one is the closest match for your meal."%(pairing_type,', '.join(pair_type_dict['categories'].keys())))
         
-    elif 'main_ingredient' in entities and len(current_pairing_state) < 2:
+    elif 'main_ingredient' in entities and len(current_pairing_state) < 2:  # They gave an ingredient
         pairing_ing = first_entity_value(entities, 'main_ingredient')
-        if len(current_pairing_state) == 0:
+        if len(current_pairing_state) == 0:                                 # They haven't already given a pairing type yet
             for pairing_type in foodPairings['categories']:
                 pair_type_dict = foodPairings['categories'][pairing_type]
                 if pairing_ing in pair_type_dict['categories']:
@@ -42,7 +42,7 @@ def pairingProgression(entities, state):
                                     .set_no_response(True, text = no_response) \
                                     .add_invalid_entity_response("Styles for %s: %s include %s, or none.\nLet me know which one closest matches your meal."%(pairing_type, pairing_ing,', '.join(pair_ing_dict['categories'].keys())))
 
-    elif len(current_pairing_state) == 2 and 'style' in entities:   # The gave a specific style
+    elif len(current_pairing_state) == 2 and 'style' in entities:   # They gave a specific style
         pairing_style = first_entity_value(entities, 'style')
         current_pairing_state.append(pairing_style)
         final_response = "Sounds delicious!  I will definitely take these foods into consideration!"
@@ -65,31 +65,36 @@ def pairingProgression(entities, state):
     else:
         return "I'm sorry, it looks like you already told me about what pairing you wanted.  You'll have to start a new search if you want to change the pairing.\n"
 
+
 def getQueryString(state):
     params = state.queryFrame.getFilledSlots()
     #print params
     ack = "You're looking for a"
+
     if 'vintage' in params:
         ack = ack + " " + str(params['vintage'].getValue())
     if 'varietal' in params:
         ack = ack + " " + params['varietal'].getValue()
     elif 'type' in params:
         ack = ack + " " + params['type'].getValue()
+    
     ack += " wine"
-    if 'region' in params:
-        ack = ack + " from " + params['region'].getValue()
-    elif 'country' in params:
-        ack = ack + " from " + params['country'].getValue()
+
+    if 'wineLoc' in params:
+        ack = ack + " from " + params['wineLoc'].getValue()
+
     if 'min_price' in params and 'max_price' in params:
         ack = ack + (" costing between %d and %d dollars"%(params['min_price'].getValue(),params['max_price'].getValue()))
     elif 'min_price' in params:
         ack = ack + (" costing at least %d dollars"%(params['min_price'].getValue()))
     elif 'max_price' in params:
         ack = ack + (" costing no more than %d dollars"%(params['max_price'].getValue()))
+
     ack += "."
     if 'pairing' in params:
         ack = ack + (" Recalling your food choices, they are: (%s).  I'll see what wine pairs well with that."%(', '.join(params['pairing'].getValue())))
     return ack
+
 
 def setQueryParams(entities, state):
     made_a_change = False
@@ -100,9 +105,9 @@ def setQueryParams(entities, state):
         state.queryFrame.setSlotValue('type', color)
         made_a_change = True
 
-    country = first_entity_value(entities, 'country')
-    if country is not None:
-        state.queryFrame.setSlotValue('country', country)
+    wineLoc = first_entity_value(entities, 'wineLoc')
+    if wineLoc is not None:
+        state.queryFrame.setSlotValue('wineLoc', wineLoc)
         made_a_change = True
 
     max_price = first_entity_value(entities, 'max')
@@ -166,13 +171,16 @@ def handleQuestion(question, parsedInput, state):
     elif hasattr(question, 'invalid_response'):
         return question.invalid_response + '\n'
 
+
 def resetQuery(entities, state):
     state.reset()
     return 'What can I help you find?\n'
 
+
 def immediately_kill(entities = None, state = None):
     print("Goodbye!")
     sys.exit(0)
+
 
 def askBeforeExiting(entities, state):
     exit_quest = Question('Are you sure that you want to exit?') \
@@ -208,12 +216,14 @@ def setWineListIndex(entities, state, manualIndex = None):
         response += "Let me know if you want to start a new search."
     return response
 
+
 actions = {
     'setQuery': setQueryParams,
     'resetQuery': resetQuery,
     'exit': askBeforeExiting,
     'setWineIndex': setWineListIndex
 }
+
 
 what_color_quest = Question('Do you have a preferred type of wine? If so, what kind? Common colors are red, white, and rose.') \
                         .set_yes_response(False, text = "Which color do you prefer: red, white, or rose?") \
@@ -240,7 +250,7 @@ def prompt_for_info(state):
             if m == 'type' and what_color_quest not in state.operationsStack and "varietal" not in state.queryFrame.getFilledSlots():
                 state.operationsStack.append(what_color_quest)
                 return what_color_quest.question_text
-            if (m == "min_price" or m == "max_price") and price_range_quest not in state.operationsStack:
+            if ((m == "min_price" and "max_price" in missing) or (m == "max_price" and "min_price" in missing))and price_range_quest not in state.operationsStack:
                 state.operationsStack.append(price_range_quest)
                 return price_range_quest.question_text
             if m == 'pairing' and have_a_pairing_quest not in state.operationsStack:

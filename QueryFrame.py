@@ -12,10 +12,7 @@ class QueryFrame:
         self.slots['max_price'] = QuerySlot('max_price', True)
         self.slots['vintage'] = QuerySlot('vintage')
         self.slots['rating'] = QuerySlot('rating')
-        self.slots['country'] = QuerySlot('country')
-        self.slots['region'] = QuerySlot('region')
-        self.slots['appellation'] = QuerySlot('appellation')
-        self.slots['labels'] = QuerySlot('labels')
+        self.slots['wineLoc'] = QuerySlot('wineLoc')
         self.slots['pairing'] = QuerySlot('pairing', True)
 
     def setSlotValue(self, slot, value):
