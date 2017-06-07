@@ -42,6 +42,15 @@ def pairingProgression(entities, state):
                                     .set_no_response(True, text = no_response) \
                                     .add_invalid_entity_response("Styles for %s: %s include %s, or none.\nLet me know which one closest matches your meal."%(pairing_type, pairing_ing,', '.join(pair_ing_dict['categories'].keys())))
 
+        else:
+            # No style to choose, so proceed.
+            final_response = "Sounds delicious!  I will definitely take these foods into consideration!"
+            if 'blurb' in pair_ing_dict:
+                final_response += " %s\n" % (pair_ing_dict['blurb'])
+            else:
+                final_response += "\n"
+            state.queryFrame.setSlotValue('pairing', current_pairing_state)
+            return final_response
     elif len(current_pairing_state) == 2 and 'style' in entities:   # They gave a specific style
         pairing_style = first_entity_value(entities, 'style')
         current_pairing_state.append(pairing_style)
@@ -52,6 +61,7 @@ def pairingProgression(entities, state):
             final_response += " %s\n" % (pair_style_dict['blurb'])
         else:
             final_response += "\n"
+        state.queryFrame.setSlotValue('pairing', current_pairing_state)
         return final_response
 
     state.queryFrame.setSlotValue('pairing', current_pairing_state)
