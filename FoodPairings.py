@@ -183,7 +183,7 @@ foodPairings = {
                 'lamb': {
                     'id': '3016',
                     'blurb': 'A gamey meat, lamb pairs well with wine that has herbal or gamey notes. Try red wines from the Rhone, like Chateauneuf-du-Pape, and Pinotage or Bordeaux',
-                    'question': 'Will you be putting herbs, hot spices, or none of these on the lamb?',
+                    'question': 'Will you be putting herbs or hot spices on the lamb, or none of these?',
                     'categories': {
                         'herbs': {
                             'id': '3025',
@@ -198,7 +198,7 @@ foodPairings = {
                 'pork': {
                     'id': '3017',
                     'blurb': 'Pork, the "other" white meat, is generally mild when served plain. Classic pairings include Pinot Noir, Cotes-du-Rhone and Tempranillo - all have a healthy balance of fresh fruit and acidity.',
-                    'question': 'What do you plan on doing with the pork?  Do you want to add herbs, hot spices, mushrooom, or fruit?  Or instead will you have it as sausage, tenderloin, barbeque, breaded, or none of these?',
+                    'question': 'How do you plan on preparing the pork?  Are you going to add herbs, hot spices, mushrooom, or fruit?  Or instead will you have it as sausage, tenderloin, barbeque, breaded, or none of these?',
                     'categories': {
                         'herbs': {
                             'id': '3027',
@@ -237,7 +237,7 @@ foodPairings = {
                 'veal': {
                     'id': '3018',
                     'blurb': 'Veal is a delicate meat, but with distinct flavors. Try a rose (particularly of the sparkling kind),a Viognier or white Bordeaux if you\'re up for white. For reds, a Merlot or Pinot Noir will pair nicely.',
-                    'question': 'Several ways of preparing pork would be with herbs, lemon / citrus, mushroom, breaded, and in chops.  Which one do you plan on doing?',
+                    'question': 'Several ways of preparing veal would be with herbs, lemon / citrus, mushroom, breaded, and in chops.  Which one do you plan on doing?',
                     'categories': {
                         'herbs': {
                             'id': '3035',
@@ -337,7 +337,7 @@ foodPairings = {
         },
         'pasta and grains': {
             'id': '3012',
-            'question': 'The several kinds of pasta / grains I am familiar with include lasagne, paella, actual pasta, pizza, and risotto.  Let me know which one you plan on having, or tell me that it is none of these if so.',
+            'question': 'The several kinds of pasta / grains I am familiar with include lasagne, paella, actual pasta, pizza, and risotto.  Let me know which one you plan on having, or let me know if it is none of these.',
             'categories': {
                 'lasagne': {
                     'id': '3055',
@@ -360,7 +360,7 @@ foodPairings = {
                 'pasta': {
                     'id': '3057',
                     'blurb': 'Pasta, a fairly bland food, is enhanced with butter or olive oil. Try a mild white, like Italian white, Spanich white or a White Rhone Blend',
-                    'question': 'There are a lot of choices for pasta.  They include meat, mushroom, pesto, tomato-base, vegetable, white sauce, and cream-based.  Let me know which one, or tell me that it is none of them if so.',
+                    'question': 'There are a lot of sauce choices for pasta.  They include meat, mushroom, pesto, tomato-based, vegetable, white sauce, and cream-based.  Tell me which one you are planning to have, or let me know if it is none of these.',
                     'categories': {
                         'meat': {
                             'id': '3067',
@@ -437,7 +437,7 @@ foodPairings = {
                 'chicken': {
                     'id': '3075',
                     'blurb': 'Chicken is a mild meat and served plain, could match with just about anything, as it won\'t overpower the wine. It does particularly well with Chardonnay, Italian whites or White Rhone Blends',
-                    'question': 'There are many ways of preparing chicken, several which includes with herbs, lemon / citrus, mushroom, mustard, spicy, as a barbeque, cream-based, and of course fried.  Which one is it?',
+                    'question': 'There are many ways of preparing chicken, several of which include with herbs, lemon / citrus, mushroom, mustard, spicy, as a barbeque, cream-based, and of course fried.  Which one is it?',
                     'categories': {
                         'herbs': {
                             'id': '3078',
@@ -506,8 +506,8 @@ foodPairings = {
                 },
                 'turkey': {
                     'id': '3077',
-                    'blurb': 'Roasted turkey is a bit heavier than other turkeys. Try an aromatic, fruit-forward white like Riesling or a juicy Syrah from Washignton State or California',
-                    'question': 'For preparing the turkey, will it be with lemon, roasted, breaded, or none of these?',
+                    'blurb': 'Turkey is a bit heavier than other poultry. Try an aromatic, fruit-forward white like Riesling or a juicy Syrah from Washignton State or California',
+                    'question': 'How will the turkey be prepared: with lemon, roasted, breaded, or none of these?',
                     'categories': {
                         'lemon': {
                             'id': '3090',
@@ -567,7 +567,7 @@ foodPairings = {
                 },
                 'salmon': {
                     'id': '3096',
-                    'question': 'Several ways of preparing salmon include with herbs, with mustard, and grilled.  Let me know which one, if any.',
+                    'question': 'Several ways of preparing salmon include with herbs, with mustard, and grilled.  Let me know which one you plan to have, if any.',
                     'categories': {
                         'herbs': {
                             'id': '3107',
@@ -633,11 +633,11 @@ foodPairings = {
                 },
                 'sushi': {
                     'id': '3099',
-                    'blurb': 'Sushi has salty and spicy, so is great with sake, sparkling wine or Pinot Gris'
+                    'blurb': 'Sushi has salty and spicy tastes, so is great with sake, sparkling wine or Pinot Gris'
                 },
                 'tuna': {
                     'id': '3100',
-                    'blurb': 'Seared tuna is a heavier fish and goes well with Pinot Noir or Oregon Pinot Gris',
+                    'blurb': 'Tuna is a heavier fish and goes well with Pinot Noir or Oregon Pinot Gris',
                     'question': 'Is it going to be seared tuna or spicy tuna?',
                     'categories': {
                         'seared': {

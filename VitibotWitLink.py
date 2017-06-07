@@ -20,6 +20,8 @@ class VitibotWitLink:
         while True:
             if inputMethod == 'typed':
                 message = prompt('> ', mouse_support=True).rstrip()
+                if not message:
+                    continue
                 jsonResponse = self.witClient.message(message)
             elif inputMethod == 'str':
                 jsonResponse = self.witClient.message(mstr)

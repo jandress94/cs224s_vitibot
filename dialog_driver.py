@@ -30,19 +30,19 @@ def pairingProgression(entities, state):
                     break
 
         pairing_type = current_pairing_state[0]
-        if pairing_ing not in foodPairings['categories'][pairing_type]['categories']:
-            pair_type_dict = foodPairings['categories'][pairing_type]
+        pair_type_dict = foodPairings['categories'][pairing_type]
+        if pairing_ing not in pair_type_dict['categories']:             # Tried to choose an invalid ingredient
             pairing_question = Question("That's not a valid ingredient. Main ingredient for %s include: %s, or none.\nLet me know which one is the closest match for your meal, or you can start a new search as well."%(pairing_type,', '.join(pair_type_dict['categories'].keys()))) \
                                     .add_valid_entity_response('main_ingredient', pairingProgression) \
                                     .set_no_response(True, text = "That's ok, but I won't be able to make much use of a generic pairing like \"%s\"." % (pairing_type)) \
                                     .add_invalid_entity_response("That's not a valid ingredient. Main ingredient for %s include: %s, or none.\nLet me know which one is the closest match for your meal."%(pairing_type,', '.join(pair_type_dict['categories'].keys())))
             
-        else:
+        else:                                                           # Chose a valid ingredient
             current_pairing_state.append(pairing_ing)
-            pair_ing_dict = foodPairings['categories'][pairing_type]['categories'][pairing_ing]
-            if 'question' in pair_ing_dict:
-                no_response = "Ok, I'll make my wine recommendation so that it pairs well with %s: %s in general." % (pairing_type, pairing_ing)
-                if 'blurb' in pair_ing_dict:
+            pair_ing_dict = pair_type_dict['categories'][pairing_ing]
+            if 'question' in pair_ing_dict:                             # If this ingredient has styles to choose from
+                no_response = "Ok, I'll make my wine recommendation so that it pairs well with %s in general." % (pairing_ing)
+                if 'blurb' in pair_ing_dict:                            # If the ingredient itself has a blurb
                     no_response += " %s" % (pair_ing_dict['blurb'])
                 pairing_question = Question(pair_ing_dict['question']) \
                                     .add_valid_entity_response('style', pairingProgression) \
@@ -58,6 +58,7 @@ def pairingProgression(entities, state):
                     final_response += "\n"
                 state.queryFrame.setSlotValue('pairing', current_pairing_state)
                 return final_response
+
     elif len(current_pairing_state) == 2 and 'style' in entities:   # They gave a specific style
         pairing_style = first_entity_value(entities, 'style')
         current_pairing_state.append(pairing_style)
@@ -191,7 +192,7 @@ def handleQuestion(question, parsedInput, state):
 
 def resetQuery(entities, state):
     state.reset()
-    return 'What can I help you find?\n'
+    return "Alright, let's start a new search! What can I help you find?\n"
 
 
 def immediately_kill(entities = None, state = None):
@@ -216,9 +217,11 @@ def setWineListIndex(entities, state, manualIndex = None):
     else:
         desired_index = first_entity_value(entities, 'wineIndex')
         if desired_index is None:
-            return 'Tell which number wine you are trying to view.'
-        else:
-            state.wineListIndex = desired_index - 1
+            desired_index = first_entity_value(entities, 'ordinal')
+            if desired_index is None:
+                return 'Tell which number wine you are trying to view.'
+        
+        state.wineListIndex = desired_index - 1
 
     response = ''
 
@@ -251,12 +254,15 @@ override_actions = [
 what_color_quest = Question('Do you have a preferred type of wine? If so, what kind? Common colors are red, white, and rose.') \
                         .set_yes_response(False, text = "Which color do you prefer: red, white, or rose?") \
                         .set_no_response(True, text = "Ok, I'll base my recommendation on something other than the wine type.") \
-                        .add_valid_entity_response('color', setQueryParams)
+                        .add_valid_entity_response('color', setQueryParams) \
+                        .add_valid_entity_response('varietal', setQueryParams) \
+                        .add_invalid_entity_response("If you have a preferred type of wine, please tell me.  Otherwise, let me know that you don't have a preferrence.")
 price_range_quest = Question("Are you on a budget? If so, what's your spending range?") \
                         .set_yes_response(False, text = "What is your price range?") \
                         .set_no_response(True, text = "Ok, I won't take price into account when selecting a wine.  Don't be mad if I pick an expensive one though! ;-)") \
                         .add_valid_entity_response('min', setQueryParams) \
-                        .add_valid_entity_response('max', setQueryParams)
+                        .add_valid_entity_response('max', setQueryParams) \
+                        .add_invalid_entity_response("Please let me know what price range you have for your wine, or tell me if money is no object.")
 have_a_pairing_quest = Question(foodPairings['question']) \
                         .set_yes_response(False, text = "I know about the following types of food: %s, or none.\nLet me know which one is the closest match for your meal."%(', '.join(foodPairings['categories'].keys()))) \
                         .set_no_response(True, text = "No problem, I'll pick a wine that stands well on its own.") \
@@ -286,7 +292,7 @@ def performSearch(entities, state):
     if state.wineList is None:
         return "no winelist"
     elif len(state.wineList) == 0:
-        return "I'm sorry, but I could not find a good wine which matches your description.  Let me know what you want to change about your query.\n"
+        return "I'm sorry, but I could not find a good wine which matches your description.\nYou can either start a new search or let me know what you want to change about your query\n(some common issues are specifying a wine type or varietal that won't go well with a specified food, or too restrictive of a price range).\n"
     return setWineListIndex(entities, state, manualIndex = 0)
 
 
