@@ -59,8 +59,11 @@ def pairingProgression(entities, state):
     if state.useBaseline:
         return ''
 
-    state.operationsStack.append(pairing_question)
-    return pairing_question.question_text
+    if pairing_question is not None:
+        state.operationsStack.append(pairing_question)
+        return pairing_question.question_text
+    else:
+        return "I'm sorry, it looks like you already told me about what pairing you wanted.  You'll have to start a new search if you want to change the pairing.\n"
 
 def getQueryString(state):
     params = state.queryFrame.getFilledSlots()
@@ -178,10 +181,38 @@ def askBeforeExiting(entities, state):
     state.operationsStack.append(exit_quest)
     return exit_quest.question_text
 
+
+def setWineListIndex(entities, state, manualIndex = None):
+    if state.wineList is None or len(state.wineList) == 0:
+        return 'You cannot choose a wine to view until you have run a search!\n'
+
+    if manualIndex is not None:
+        state.wineListIndex = manualIndex
+    else:
+        desired_index = first_entity_value(entities, 'wineIndex')
+        if desired_index is None:
+            return 'Tell which number wine you are trying to view.'
+        else:
+            state.wineListIndex = desired_index - 1
+
+    response = ''
+
+    if state.wineListIndex >= len(state.wineList) or state.wineListIndex < 0:
+        state.wineListIndex = 0
+        response += 'Unfortunately, that is more than the number of wines I found for you!\n\n'
+
+    response += "Here is the information about the chosen wine:\n\n%s\n\nI hope you enjoy the recommendation!\n" % (str(state.wineList[state.wineListIndex]))
+    if len(state.wineList) > 1:
+        response += "This is wine number %d out of %d.  Let me know if you want to see any of the other wines or if you want to start a new search." % (state.wineListIndex+1, len(state.wineList))
+    else:
+        response += "Let me know if you want to start a new search."
+    return response
+
 actions = {
     'setQuery': setQueryParams,
     'resetQuery': resetQuery,
-    'exit': askBeforeExiting
+    'exit': askBeforeExiting,
+    'setWineIndex': setWineListIndex
 }
 
 what_color_quest = Question('Do you have a preferred type of wine? If so, what kind? Common colors are red, white, and rose.') \
@@ -215,19 +246,6 @@ def prompt_for_info(state):
             if m == 'pairing' and have_a_pairing_quest not in state.operationsStack:
                 state.operationsStack.append(have_a_pairing_quest)
                 return have_a_pairing_quest.question_text
-
-
-def setWineListIndex(entities, state, manualIndex = None):
-    if manualIndex is not None:
-        state.wineListIndex = manualIndex
-    else:
-        pass
-
-    if state.wineListIndex >= len(state.wineList):
-        return 'Unfortunately, that is more than the number of wines I found for you!'
-
-    response = "Here is the information about the chosen wine:\n\n%s\n\nI hope you enjoy the recommendation!  Let me know when you want to start a new search." % (str(state.wineList[state.wineListIndex]))
-    return response
 
 
 def performSearch(entities, state):
