@@ -33,9 +33,19 @@ witLink = VitibotWitLink(verbose = verbose)
 
 print "Hello there!  I am VitiBot, your personal wine expert.  Let me know if there is anything I can search for you.\n"
 
+if verbose:
+    while True:
+        parsedInput = witLink.getParsedInput(inputMethod = inputMethod)
+        print('\n')
+        vitibotResponse = respondToDialog(parsedInput, vitibotState)
+        print(vitibotResponse)
 
-while True:
-    parsedInput = witLink.getParsedInput(inputMethod = inputMethod)
-    print('\n')
-    vitibotResponse = respondToDialog(parsedInput, vitibotState)
-    print(vitibotResponse)
+else:
+    try:
+        while True:
+            parsedInput = witLink.getParsedInput(inputMethod = inputMethod)
+            print('\n')
+            vitibotResponse = respondToDialog(parsedInput, vitibotState)
+            print(vitibotResponse)
+    except Exception:
+        print "Something has happened so I unfortunately have to go :(.  I hope to see you again soon!"
